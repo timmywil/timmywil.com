@@ -1,0 +1,118 @@
+{
+  "name": "timmywil.com",
+  "private": true,
+  "description": "Personal blog and website for Timmy Willison",
+  "version": "0.1.0",
+  "author": "Timmy Willison <4timmywil@gmail.com>",
+  "scripts": {
+    "commit": "git-cz",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "build": "gatsby build",
+    "tslint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "concurrently \"yarn type-check\" \"yarn tslint\" \"precise-commits --check-only\"",
+    "lint:fix": "concurrently \"yarn type-check\" \"yarn tslint --fix\" \"precise-commits\"",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "rm -rf public/ && gatsby develop",
+    "serve": "gatsby serve",
+    "deploy": "gatsby build && gh-pages -d public -b master",
+    "release": "semantic-release",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.10",
+    "gatsby": "^2.3.25",
+    "gatsby-image": "^2.0.39",
+    "gatsby-plugin-emotion": "^4.0.6",
+    "gatsby-plugin-feed": "^2.1.1",
+    "gatsby-plugin-google-analytics": "^2.0.18",
+    "gatsby-plugin-manifest": "^2.0.29",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-sharp": "^2.0.35",
+    "gatsby-plugin-typescript": "^2.0.12",
+    "gatsby-plugin-typography": "^2.2.13",
+    "gatsby-remark-copy-linked-files": "^2.0.11",
+    "gatsby-remark-images": "^2.0.6",
+    "gatsby-remark-prismjs": "^3.2.8",
+    "gatsby-remark-responsive-iframe": "^2.1.1",
+    "gatsby-remark-smartypants": "^2.0.9",
+    "gatsby-source-filesystem": "^2.0.29",
+    "gatsby-transformer-remark": "^2.3.8",
+    "gatsby-transformer-sharp": "^2.1.18",
+    "prismjs": "^1.16.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.0",
+    "react-typography": "^0.16.19",
+    "typeface-crimson-text": "^0.0.72",
+    "typeface-rosario": "^0.0.72",
+    "typescript": "^3.4.4",
+    "typography": "^0.16.19",
+    "typography-theme-twin-peaks": "^0.16.19"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/prompt": "^7.5.0",
+    "@graphql-codegen/cli": "^1.1.0",
+    "@graphql-codegen/typescript": "1.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@types/react-helmet": "^5.0.8",
+    "@types/typography": "^0.16.2",
+    "commitizen": "^3.1.1",
+    "concurrently": "^4.1.0",
+    "gh-pages": "^2.0.1",
+    "graphql": "^14.2.1",
+    "husky": "^1.3.1",
+    "precise-commits": "^1.0.2",
+    "prettier": "^1.17.0",
+    "semantic-release": "^15.13.3",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0"
+  },
+  "bugs": {
+    "url": "https://github.com/timmywil/timmywil.com/issues"
+  },
+  "homepage": "https://github.com/timmywil/timmywil.com#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/timmywil/timmywil.com.git"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "arrowParens": "always"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@commitlint/prompt"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "release": {
+    "branch": "develop",
+    "ci": false,
+    "npmPublish": false,
+    "pre-commit": "yarn lint:fix",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "tagFormat": "${version}"
+  }
+}
