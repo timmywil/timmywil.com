@@ -57,6 +57,7 @@
     "@commitlint/prompt": "^7.5.0",
     "@graphql-codegen/cli": "^1.1.0",
     "@graphql-codegen/typescript": "1.1.0",
+    "@semantic-release/exec": "^3.3.2",
     "@semantic-release/git": "^7.0.8",
     "@types/react-helmet": "^5.0.8",
     "@types/typography": "^0.16.2",
@@ -111,6 +112,9 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
       "@semantic-release/git",
+      ["@semantic-release/exec", {
+        "publishCmd": "yarn deploy"
+      }],
       "@semantic-release/github"
     ],
     "tagFormat": "${version}"
