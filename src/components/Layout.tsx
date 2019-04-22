@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: ${rhythm(24)};
-  padding: ${rhythm(2)} ${rhythm(3 / 4)};
+  padding: ${rhythm(2)} ${rhythm(1)};
 `
 
 interface Props {

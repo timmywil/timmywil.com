@@ -43,8 +43,8 @@ const styles = {
     left: 0;
     right: 0;
     height: ${rhythm(2)};
-    padding-left: ${rhythm(1)};
-    padding-right: ${rhythm(1)};
+    padding-left: ${rhythm(1 / 2)};
+    padding-right: ${rhythm(1 / 2)};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -64,8 +64,8 @@ const styles = {
     display: flex;
     align-items: center;
     height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: ${rhythm(1 / 2)};
+    padding-right: ${rhythm(1 / 2)};
     font-family: 'Rosario, sans-serif';
     text-shadow: none;
     background-image: none;
