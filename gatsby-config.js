@@ -25,6 +25,18 @@ module.exports = {
         name: 'assets'
       }
     },
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-emotion',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-138744138-1',
+        anonymize: true,
+        respectDNT: true
+      }
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -41,75 +53,18 @@ module.exports = {
               wrapperStyle: 'margin-bottom: 1.0725rem'
             }
           },
-          'gatsby-remark-prismjs',
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              noInlineHighlight: true
+            }
+          },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants'
         ]
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: 'UA-138744138-1',
-        anonymize: true,
-        respectDNT: true
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-feed',
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-                site_url: siteUrl
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map((edge) => {
-                return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }]
-                })
-              })
-            },
-            query: `
-              {
-                allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      html
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: '/rss.xml',
-            title: "Your Site's RSS Feed"
-          }
-        ]
-      }
-    },
+    'gatsby-plugin-feed',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -128,8 +83,6 @@ module.exports = {
       options: {
         pathToConfigModule: 'src/utils/typography'
       }
-    },
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-emotion'
+    }
   ]
 }

@@ -17,6 +17,12 @@ TwinPeaks.overrideThemeStyles = () => ({
   },
   'a:hover': {
     color: '#111111'
+  },
+  '.gatsby-resp-image-link': {
+    backgroundImage: 'none'
+  },
+  code: {
+    backgroundColor: '#eee'
   }
 })
 

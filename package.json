@@ -7,7 +7,7 @@
   "scripts": {
     "commit": "git-cz",
     "type-check": "tsc -p tsconfig.json --noEmit",
-    "build": "gatsby build",
+    "build": "rm -rf public/ && gatsby build",
     "tslint": "tslint -p tsconfig.json -c tslint.json",
     "lint": "concurrently \"yarn type-check\" \"yarn tslint\" \"precise-commits --check-only\"",
     "lint:fix": "concurrently \"yarn type-check\" \"yarn tslint --fix\" \"precise-commits\"",
