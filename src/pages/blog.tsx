@@ -5,6 +5,8 @@ import SEO from '../components/SEO'
 import { Query } from '../utils/graphql'
 import { rhythm } from '../utils/typography'
 
+const isProd = process.env.NODE_ENV === 'production'
+
 type Props = PageRendererProps & {
   data: Query
 }
@@ -46,7 +48,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { frontmatter: { draft: { ne: true } } }
+    ) {
       edges {
         node {
           excerpt

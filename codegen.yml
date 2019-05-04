@@ -2,6 +2,6 @@ overwrite: true
 schema: 'http://localhost:8000/___graphql'
 documents: '**/*.graphql'
 generates:
-  utils/graphql.d.ts:
+  src/utils/graphql.d.ts:
     plugins:
       - '@graphql-codegen/typescript'

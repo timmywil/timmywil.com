@@ -1341,6 +1341,7 @@ export enum MarkdownRemarkFieldsEnum {
   InternalType = 'internal___type',
   FrontmatterTitle = 'frontmatter___title',
   FrontmatterDate = 'frontmatter___date',
+  FrontmatterDraft = 'frontmatter___draft',
   FrontmatterDescription = 'frontmatter___description',
   Excerpt = 'excerpt',
   RawMarkdownBody = 'rawMarkdownBody',
@@ -1385,6 +1386,7 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   title?: Maybe<Scalars['String']>
   date?: Maybe<Scalars['Date']>
+  draft?: Maybe<Scalars['Boolean']>
   description?: Maybe<Scalars['String']>
 }
 
@@ -1398,6 +1400,7 @@ export type MarkdownRemarkFrontmatterDateArgs = {
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
   date?: Maybe<DateQueryOperatorInput>
+  draft?: Maybe<BooleanQueryOperatorInput>
   description?: Maybe<StringQueryOperatorInput>
 }
 
@@ -1470,10 +1473,10 @@ export type Query = {
   allSite?: Maybe<SiteConnection>
   directory?: Maybe<Directory>
   allDirectory?: Maybe<DirectoryConnection>
-  markdownRemark?: Maybe<MarkdownRemark>
-  allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
   imageSharp?: Maybe<ImageSharp>
   allImageSharp?: Maybe<ImageSharpConnection>
+  markdownRemark?: Maybe<MarkdownRemark>
+  allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
 }
 
 export type QueryFileArgs = {
@@ -1638,6 +1641,26 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>
 }
 
+export type QueryImageSharpArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+  fixed?: Maybe<ImageSharpFixedFilterInput>
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>
+  fluid?: Maybe<ImageSharpFluidFilterInput>
+  sizes?: Maybe<ImageSharpSizesFilterInput>
+  original?: Maybe<ImageSharpOriginalFilterInput>
+  resize?: Maybe<ImageSharpResizeFilterInput>
+}
+
+export type QueryAllImageSharpArgs = {
+  filter?: Maybe<ImageSharpFilterInput>
+  sort?: Maybe<ImageSharpSortInput>
+  skip?: Maybe<Scalars['Int']>
+  limit?: Maybe<Scalars['Int']>
+}
+
 export type QueryMarkdownRemarkArgs = {
   id?: Maybe<StringQueryOperatorInput>
   parent?: Maybe<NodeFilterInput>
@@ -1660,26 +1683,6 @@ export type QueryMarkdownRemarkArgs = {
 export type QueryAllMarkdownRemarkArgs = {
   filter?: Maybe<MarkdownRemarkFilterInput>
   sort?: Maybe<MarkdownRemarkSortInput>
-  skip?: Maybe<Scalars['Int']>
-  limit?: Maybe<Scalars['Int']>
-}
-
-export type QueryImageSharpArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  fixed?: Maybe<ImageSharpFixedFilterInput>
-  resolutions?: Maybe<ImageSharpResolutionsFilterInput>
-  fluid?: Maybe<ImageSharpFluidFilterInput>
-  sizes?: Maybe<ImageSharpSizesFilterInput>
-  original?: Maybe<ImageSharpOriginalFilterInput>
-  resize?: Maybe<ImageSharpResizeFilterInput>
-}
-
-export type QueryAllImageSharpArgs = {
-  filter?: Maybe<ImageSharpFilterInput>
-  sort?: Maybe<ImageSharpSortInput>
   skip?: Maybe<Scalars['Int']>
   limit?: Maybe<Scalars['Int']>
 }
@@ -1890,10 +1893,66 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   slug?: Maybe<Scalars['String']>
+  previous?: Maybe<SitePageContextPrevious>
+  next?: Maybe<SitePageContextNext>
 }
 
 export type SitePageContextFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>
+  previous?: Maybe<SitePageContextPreviousFilterInput>
+  next?: Maybe<SitePageContextNextFilterInput>
+}
+
+export type SitePageContextNext = {
+  fields?: Maybe<SitePageContextNextFields>
+  frontmatter?: Maybe<SitePageContextNextFrontmatter>
+}
+
+export type SitePageContextNextFields = {
+  slug?: Maybe<Scalars['String']>
+}
+
+export type SitePageContextNextFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePageContextNextFilterInput = {
+  fields?: Maybe<SitePageContextNextFieldsFilterInput>
+  frontmatter?: Maybe<SitePageContextNextFrontmatterFilterInput>
+}
+
+export type SitePageContextNextFrontmatter = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type SitePageContextNextFrontmatterFilterInput = {
+  title?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePageContextPrevious = {
+  fields?: Maybe<SitePageContextPreviousFields>
+  frontmatter?: Maybe<SitePageContextPreviousFrontmatter>
+}
+
+export type SitePageContextPreviousFields = {
+  slug?: Maybe<Scalars['String']>
+}
+
+export type SitePageContextPreviousFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePageContextPreviousFilterInput = {
+  fields?: Maybe<SitePageContextPreviousFieldsFilterInput>
+  frontmatter?: Maybe<SitePageContextPreviousFrontmatterFilterInput>
+}
+
+export type SitePageContextPreviousFrontmatter = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type SitePageContextPreviousFrontmatterFilterInput = {
+  title?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePageEdge = {
@@ -1996,6 +2055,10 @@ export enum SitePageFieldsEnum {
   ComponentChunkName = 'componentChunkName',
   IsCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   ContextSlug = 'context___slug',
+  ContextPreviousFieldsSlug = 'context___previous___fields___slug',
+  ContextPreviousFrontmatterTitle = 'context___previous___frontmatter___title',
+  ContextNextFieldsSlug = 'context___next___fields___slug',
+  ContextNextFrontmatterTitle = 'context___next___frontmatter___title',
   PluginCreatorId = 'pluginCreator___id',
   PluginCreatorParentId = 'pluginCreator___parent___id',
   PluginCreatorParentParentId = 'pluginCreator___parent___parent___id',
@@ -2045,16 +2108,12 @@ export enum SitePageFieldsEnum {
   PluginCreatorPluginOptionsPluginsPluginFilepath = 'pluginCreator___pluginOptions___plugins___pluginFilepath',
   PluginCreatorPluginOptionsPath = 'pluginCreator___pluginOptions___path',
   PluginCreatorPluginOptionsName = 'pluginCreator___pluginOptions___name',
-  PluginCreatorPluginOptionsMaxWidth = 'pluginCreator___pluginOptions___maxWidth',
-  PluginCreatorPluginOptionsWrapperStyle = 'pluginCreator___pluginOptions___wrapperStyle',
   PluginCreatorPluginOptionsTrackingId = 'pluginCreator___pluginOptions___trackingId',
   PluginCreatorPluginOptionsAnonymize = 'pluginCreator___pluginOptions___anonymize',
   PluginCreatorPluginOptionsRespectDnt = 'pluginCreator___pluginOptions___respectDNT',
-  PluginCreatorPluginOptionsQuery = 'pluginCreator___pluginOptions___query',
-  PluginCreatorPluginOptionsFeeds = 'pluginCreator___pluginOptions___feeds',
-  PluginCreatorPluginOptionsFeedsQuery = 'pluginCreator___pluginOptions___feeds___query',
-  PluginCreatorPluginOptionsFeedsOutput = 'pluginCreator___pluginOptions___feeds___output',
-  PluginCreatorPluginOptionsFeedsTitle = 'pluginCreator___pluginOptions___feeds___title',
+  PluginCreatorPluginOptionsMaxWidth = 'pluginCreator___pluginOptions___maxWidth',
+  PluginCreatorPluginOptionsWrapperStyle = 'pluginCreator___pluginOptions___wrapperStyle',
+  PluginCreatorPluginOptionsNoInlineHighlight = 'pluginCreator___pluginOptions___noInlineHighlight',
   PluginCreatorPluginOptionsStartUrl = 'pluginCreator___pluginOptions___start_url',
   PluginCreatorPluginOptionsBackgroundColor = 'pluginCreator___pluginOptions___background_color',
   PluginCreatorPluginOptionsThemeColor = 'pluginCreator___pluginOptions___theme_color',
@@ -2082,6 +2141,7 @@ export enum SitePageFieldsEnum {
   PluginCreatorPackageJsonPeerDependenciesName = 'pluginCreator___packageJson___peerDependencies___name',
   PluginCreatorPackageJsonPeerDependenciesVersion = 'pluginCreator___packageJson___peerDependencies___version',
   PluginCreatorPackageJsonKeywords = 'pluginCreator___packageJson___keywords',
+  PluginCreatorId = 'pluginCreatorId',
   ComponentPath = 'componentPath'
 }
 
@@ -2254,19 +2314,16 @@ export enum SitePluginFieldsEnum {
   PluginOptionsPluginsVersion = 'pluginOptions___plugins___version',
   PluginOptionsPluginsPluginOptionsMaxWidth = 'pluginOptions___plugins___pluginOptions___maxWidth',
   PluginOptionsPluginsPluginOptionsWrapperStyle = 'pluginOptions___plugins___pluginOptions___wrapperStyle',
+  PluginOptionsPluginsPluginOptionsNoInlineHighlight = 'pluginOptions___plugins___pluginOptions___noInlineHighlight',
   PluginOptionsPluginsPluginFilepath = 'pluginOptions___plugins___pluginFilepath',
   PluginOptionsPath = 'pluginOptions___path',
   PluginOptionsName = 'pluginOptions___name',
-  PluginOptionsMaxWidth = 'pluginOptions___maxWidth',
-  PluginOptionsWrapperStyle = 'pluginOptions___wrapperStyle',
   PluginOptionsTrackingId = 'pluginOptions___trackingId',
   PluginOptionsAnonymize = 'pluginOptions___anonymize',
   PluginOptionsRespectDnt = 'pluginOptions___respectDNT',
-  PluginOptionsQuery = 'pluginOptions___query',
-  PluginOptionsFeeds = 'pluginOptions___feeds',
-  PluginOptionsFeedsQuery = 'pluginOptions___feeds___query',
-  PluginOptionsFeedsOutput = 'pluginOptions___feeds___output',
-  PluginOptionsFeedsTitle = 'pluginOptions___feeds___title',
+  PluginOptionsMaxWidth = 'pluginOptions___maxWidth',
+  PluginOptionsWrapperStyle = 'pluginOptions___wrapperStyle',
+  PluginOptionsNoInlineHighlight = 'pluginOptions___noInlineHighlight',
   PluginOptionsStartUrl = 'pluginOptions___start_url',
   PluginOptionsBackgroundColor = 'pluginOptions___background_color',
   PluginOptionsThemeColor = 'pluginOptions___theme_color',
@@ -2393,13 +2450,12 @@ export type SitePluginPluginOptions = {
   plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
   path?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
-  maxWidth?: Maybe<Scalars['Int']>
-  wrapperStyle?: Maybe<Scalars['String']>
   trackingId?: Maybe<Scalars['String']>
   anonymize?: Maybe<Scalars['Boolean']>
   respectDNT?: Maybe<Scalars['Boolean']>
-  query?: Maybe<Scalars['String']>
-  feeds?: Maybe<Array<Maybe<SitePluginPluginOptionsFeeds>>>
+  maxWidth?: Maybe<Scalars['Int']>
+  wrapperStyle?: Maybe<Scalars['String']>
+  noInlineHighlight?: Maybe<Scalars['Boolean']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
   theme_color?: Maybe<Scalars['String']>
@@ -2409,33 +2465,16 @@ export type SitePluginPluginOptions = {
   pathCheck?: Maybe<Scalars['Boolean']>
 }
 
-export type SitePluginPluginOptionsFeeds = {
-  query?: Maybe<Scalars['String']>
-  output?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-}
-
-export type SitePluginPluginOptionsFeedsFilterInput = {
-  query?: Maybe<StringQueryOperatorInput>
-  output?: Maybe<StringQueryOperatorInput>
-  title?: Maybe<StringQueryOperatorInput>
-}
-
-export type SitePluginPluginOptionsFeedsFilterListInput = {
-  elemMatch?: Maybe<SitePluginPluginOptionsFeedsFilterInput>
-}
-
 export type SitePluginPluginOptionsFilterInput = {
   plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
   path?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
-  maxWidth?: Maybe<IntQueryOperatorInput>
-  wrapperStyle?: Maybe<StringQueryOperatorInput>
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   respectDNT?: Maybe<BooleanQueryOperatorInput>
-  query?: Maybe<StringQueryOperatorInput>
-  feeds?: Maybe<SitePluginPluginOptionsFeedsFilterListInput>
+  maxWidth?: Maybe<IntQueryOperatorInput>
+  wrapperStyle?: Maybe<StringQueryOperatorInput>
+  noInlineHighlight?: Maybe<BooleanQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
   theme_color?: Maybe<StringQueryOperatorInput>
@@ -2470,11 +2509,13 @@ export type SitePluginPluginOptionsPluginsFilterListInput = {
 export type SitePluginPluginOptionsPluginsPluginOptions = {
   maxWidth?: Maybe<Scalars['Int']>
   wrapperStyle?: Maybe<Scalars['String']>
+  noInlineHighlight?: Maybe<Scalars['Boolean']>
 }
 
 export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   maxWidth?: Maybe<IntQueryOperatorInput>
   wrapperStyle?: Maybe<StringQueryOperatorInput>
+  noInlineHighlight?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {

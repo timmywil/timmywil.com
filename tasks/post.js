@@ -16,6 +16,7 @@ title: <%- title %>
 date: '<%- date %>'<% if(typeof description !== 'undefined') { %>
 description: <%- description %>
 <% } %>
+draft: true
 ---
 
 `)

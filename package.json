@@ -16,7 +16,7 @@
     "serve": "gatsby serve",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "release": "semantic-release",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "schema": "graphql-codegen --config codegen.yml",
     "post": "node tasks/post.js"
   },
   "dependencies": {
