@@ -53,7 +53,7 @@ Add this script to your `package.json`:
 ```
 <p></p>
 
-Next, double check [git authentication][semantic-release-git-authentication], which mainly involves making sure some git environment variables are set. Then create a GitHub token for semantic-release-bot. The [@semantic-release/github docs][semantic-release-github] explain how to do this. Specifically, follow [this guide][creating-github-token] and set `GH_TOKEN` in your environment.
+Next, double check [git authentication][semantic-release-git-authentication], which involves setting some environment variables. Then create a GitHub token for semantic-release-bot. The [@semantic-release/github docs][semantic-release-github] explain how to do this. Specifically, follow [this guide][creating-github-token] and set `GH_TOKEN` in your environment.
 
 Finally, the config. Here's an example config to use for semantic-release.
 Replace `$PROJECTNAME` with your own project name.
@@ -66,15 +66,15 @@ Replace `$PROJECTNAME` with your own project name.
   "npmPublish": false,
   // We're initiating the release from
   // our local machine. You could set this
-  // to true to release on every push
-  // to a certain branch, but I like
+  // to true and set up releasing on every push
+  // to the release branch, but I like
   // pulling the trigger myself.
   "ci": false,
   "plugins": [
     // Analyzes commit messages and
     // determines the version
     "@semantic-release/commit-analyzer",
-    // Build release notes from commit messages
+    // Builds release notes from commit messages
     "@semantic-release/release-notes-generator",
     // Updates the version
     "@semantic-release/npm",
@@ -115,15 +115,13 @@ If you're unfamiliar, you can add `pre` or `post` to any script and it will run 
 
 ### The git commit
 
-After the updating the version, `@semantic-release/git` is responsible for staging the changed assets, committing those assests, tagging the commit, and pushing it to GitHub. But you have to be explicit about which files to add. The files listed above are all of the files that `@semantic-release/npm` and `react-native-version` changes.
+After updating the version, `@semantic-release/git` is responsible for staging the changed assets, committing those assests, tagging the commit, and pushing it to GitHub. But you have to be explicit about which files to add. The files listed above are all of the files that `@semantic-release/npm` and `react-native-version` changes.
 
 The message is mostly default with one important difference. It removes `[skip ci]` from the end of the message. We do not want to skip CI.
 
 ### Conclusion
 
 Try running `npm run release -- -d` or `yarn release -d` to do a dry run of what you have so far. If everything is set up correctly, you're halfway to single-command deployment. In the next part, we'll discuss setting up Fastlane and Circle CI, which will take care of linting, building, and actually deploying to Testflight and Google Play, as well as posting a message to Slack.
-
-See you there.
 
 <a name="notes"></a>
 
