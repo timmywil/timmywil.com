@@ -458,7 +458,7 @@ I've found it useful to have separate branches for deploying either android or i
 
 Congratulations! If you've made it this far, you have a robust, single-command deployment process from commit to app store. TestFlight and Google Play have updated versions, GitHub has the release notes, Slack has been notified. All with one command: `yarn release` or `npm run release`.
 
-With this setup, deployment takes about 8 minutes <sup>[2](#notes)</sup> from the time I run the command to both apps being available in the app stores. Your deployment time may vary depending on package size, but I suspect this will be an improvement over your current workflow.
+With this setup, the deployment for my most recent app takes about 8 minutes <sup>[2](#notes)</sup> from the time I run the command to both apps being available in the app stores. Your deployment time may vary depending on package size, but I suspect this will be an improvement over your current workflow.
 
 If you have questions or suggestions on how this workflow could be improved, I'm available on [Twitter](https://twitter.com/timmywil).
 

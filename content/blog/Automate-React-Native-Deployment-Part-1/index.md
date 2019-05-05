@@ -143,7 +143,7 @@ Try running `yarn release -d` or `npm run release -- -d` to do a dry run of what
 
 <small><strong>2</strong>: A while back I wrote [a guide](https://medium.com/@timmywil/sign-your-commits-on-github-with-gpg-566f07762a43) on signing commits with GPG, including saving the passphrase so you don't have to enter it every commit.</small>
 
-<small><strong>3</strong>: I ran into an issue with this. I had the environment variables defined in my `.bash_profile`, but wasn't using `export` (e.g. `export GIT_AUTHOR_EMAIL=$EMAIL` rather than `GIT_AUTHOR_EMAIL=$EMAIL`). The reason for `export` is to make the variable it exports available to other processes–like `node`. Make sure to use `export`.</small>
+<small><strong>3</strong>: I ran into an issue with this. I had the environment variables defined in my `.bash_profile`, but wasn't using `export` (e.g. `export GIT_AUTHOR_EMAIL=$EMAIL` rather than `GIT_AUTHOR_EMAIL=$EMAIL`). The reason for `export` is to make the variable available–say that three times fast–to other processes, like `node`. Make sure to use `export`.</small>
 
 </details>
 
