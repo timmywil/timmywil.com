@@ -1,4 +1,5 @@
 import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 import { graphql, useStaticQuery } from 'gatsby'
 import Image, { FixedObject } from 'gatsby-image'
 import React from 'react'
@@ -6,6 +7,16 @@ import { Query } from '../utils/graphql'
 import { rhythm } from '../utils/typography'
 
 type QueryType = Query & { avatar: { childImageSharp: { fixed: FixedObject } } }
+
+const SVGIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: #2a7ae2;
+  line-height: 0;
+  padding-top: 1px;
+  margin-right: 3px;
+`
 
 export default function Bio() {
   const { site, avatar } = useStaticQuery<QueryType>(bioQuery)
@@ -19,7 +30,16 @@ export default function Bio() {
         imgStyle={styles.image}
       />
       <p css={styles.writtenText}>
-        Come at me: <a href={`https://twitter.com/${social.twitter}`}>{author}</a>.
+        Come at me:
+        <a css={styles.twitterLink} href={`https://twitter.com/${social.twitter}`}>
+          <SVGIcon
+            dangerouslySetInnerHTML={{
+              __html: '<use xlink:href="/minima-social-icons.svg#twitter"></use>'
+            }}
+          />
+          {author}
+        </a>
+        .
       </p>
     </div>
   )
@@ -34,6 +54,9 @@ const styles = {
     margin-bottom: ${rhythm(1)};
   `,
   writtenText: css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin: 0;
   `,
   imageWrap: css`
@@ -41,6 +64,9 @@ const styles = {
     margin-bottom: 0;
     min-width: 50;
     border-radius: 100%;
+  `,
+  twitterLink: css`
+    margin-left: 5px;
   `,
   image: {
     borderRadius: '50%'
