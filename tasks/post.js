@@ -21,31 +21,38 @@ draft: true
 
 `)
 
-function post (title, description) {
+function post(title, description) {
   return new Promise((resolve, reject) => {
     const dir = path.join(__dirname, `/../content/blog/${title.replace(rspaces, '-')}`)
     mkdirp(dir, (mkdirErr) => {
       if (mkdirErr) {
         return reject(mkdirErr)
       }
-      fs.writeFile(path.join(dir, 'index.md'), postTemplate({
-        title,
-        date: (new Date).toISOString(),
-        description
-      }), 'utf8', (fsErr) => {
-        if (fsErr) {
-          return reject(fsErr)
+      fs.writeFile(
+        path.join(dir, 'index.md'),
+        postTemplate({
+          title,
+          date: new Date().toISOString(),
+          description
+        }),
+        'utf8',
+        (fsErr) => {
+          if (fsErr) {
+            return reject(fsErr)
+          }
+          resolve()
         }
-        resolve()
-      })
+      )
     })
-  })
-  .then((files) => {
-    console.log(`Created post ${title}.`)
-  }, (error) => {
-    console.error(error.stack)
-    process.exit(1)
-  })
+  }).then(
+    () => {
+      console.log(`Created post ${title}.`)
+    },
+    (error) => {
+      console.error(error.stack)
+      process.exit(1)
+    }
+  )
 }
 
 if (args.length) {

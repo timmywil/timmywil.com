@@ -19,7 +19,7 @@ export default function Bio() {
         imgStyle={styles.image}
       />
       <p css={styles.writtenText}>
-        Written by <a href={`https://twitter.com/${social.twitter}`}>{author}</a>.
+        Come at me: <a href={`https://twitter.com/${social.twitter}`}>{author}</a>.
       </p>
     </div>
   )

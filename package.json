@@ -6,10 +6,11 @@
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "commit": "git-cz",
-    "type-check": "tsc -p tsconfig.json --noEmit",
     "build": "rm -rf public/ && gatsby build",
+    "type-check": "tsc -p tsconfig.json --noEmit",
     "tslint": "tslint -p tsconfig.json -c tslint.json",
-    "lint": "concurrently \"yarn type-check\" \"yarn tslint\" \"precise-commits --check-only\"",
+    "prettier": "prettier --check \"**/*.tsx\" \"**/*.ts\" \"**/*.js\"",
+    "lint": "concurrently \"yarn type-check\" \"yarn tslint\" \"yarn prettier\"",
     "lint:fix": "concurrently \"yarn type-check\" \"yarn tslint --fix\" \"precise-commits\"",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "rm -rf public/ && gatsby develop",
