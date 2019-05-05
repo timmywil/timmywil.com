@@ -118,12 +118,13 @@ After updating the version, `@semantic-release/git` is responsible for staging t
 
 The message is mostly default with one important difference. It removes `[skip ci]` from the end of the message. We do not want to skip CI.
 
-If you already have GPG set up for signing commits <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release. This is easy to do in our case since we're committing from our local machine. Set these environment variables:
+If you already have GPG set up for signing commits <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release. This is easy to do in our case since we're committing from our local machine. The fix is to commit using your own name and email rather than the one used for the bot. <sup>[3](#notes)</sup> Make sure these environment variables are set to the ones matching your GPG signature:
 
 ```bash
-# Set during GPG keys generation
-GIT_EMAIL
-GIT_USERNAME # Not GitHub username
+GIT_AUTHOR_NAME
+GIT_AUTHOR_EMAIL
+GIT_COMMITTER_NAME
+GIT_COMMITTER_EMAIL
 ```
 
 If you opted to run semantic-release in CI, the [`@semantic-release/git` docs][semantic-release-git] explain how to sign commits on Travis.
@@ -136,11 +137,13 @@ Try running `yarn release -d` or `npm run release -- -d` to do a dry run of what
 
 <details>
 <summary>Notes</summary>
-<style>small, small code { line-height: 1; }</style>
+<style>small, small code { font-size: 80%; line-height: 1; }</style>
 
 <small><strong>1</strong>: If you've used fastlane before, you may have used that to update versions in iOS and Android and are wondering why this is better. First, this does more than existing fastlane plugins. For example, while it's easy to increment the version code in Android using a fastlane plugin, it's not so easy to update the version name at the same time, which should really match the version we use in `package.json`. But the main reason to use `react-native-version` is using fastlane in CI is too little too late. If we tried to update versions when deploying to the app stores, we'd have to jump through several hoops to get those changes included in our git tag. We want a clean, atomic release, and git tags are perfect for that. fastlane would have to amend the commit and tag. Overall, it's simpler to do it when updating the `package.json` version. You may also be wondering why we're using fastlane on CI instead of our local machine. We'll get to that in part 2.</small>
 
-<small><strong>2</strong>: A while back I wrote [a guide](https://medium.com/@timmywil/sign-your-commits-on-github-with-gpg-566f07762a43) on signing commits with GPG, including saving the passphrase so you don't have to enter it every time.</small>
+<small><strong>2</strong>: A while back I wrote [a guide](https://medium.com/@timmywil/sign-your-commits-on-github-with-gpg-566f07762a43) on signing commits with GPG, including saving the passphrase so you don't have to enter it every commit.</small>
+
+<small><strong>3</strong>: I ran into an issue with this. I had the environment variables defined in my `.bash_profile`, but wasn't using `export` (e.g. `export GIT_AUTHOR_EMAIL=$EMAIL` rather than `GIT_AUTHOR_EMAIL=$EMAIL`). The reason for `export` is to make the variable it exports available to other processes–like `node`. Make sure to use `export`.</small>
 
 </details>
 
