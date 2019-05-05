@@ -120,12 +120,10 @@ After updating the version, `@semantic-release/git` is responsible for staging t
 
 The message is mostly default with one important difference. It removes `[skip ci]` from the end of the message. We do not want to skip CI.
 
-If you're familiar with GPG <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release-bot. This is easy to do in our case since we're committing from our local machine. Make sure these environment variables are set:
+If you already have GPG set up for signing commits <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release. This is easy to do in our case since we're committing from our local machine. Set these environment variables:
 
 ```bash
-# All set during GPG keys generation
-GPG_PASSPHRASE
-GPG_KEY_ID
+# Set during GPG keys generation
 GIT_EMAIL
 GIT_USERNAME # Not GitHub username
 ```
