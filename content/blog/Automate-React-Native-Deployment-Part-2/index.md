@@ -271,8 +271,6 @@ jobs:
           destination: /apk/
 ```
 
-<br/>
-
 The deploy job reuses the workspace we created in [part 1][part-1], rather than re-installing node modules. Android gradle dependencies and ruby gems are given their own caches for faster subsequent builds. The key creation references are used once dependencies are installed. And finally, it's time to build and deploy the Android app using fastlane.
 
 #### Deploying the Android app using fastlane
@@ -300,8 +298,6 @@ lane :deploy do
   upload_to_play_store(track: 'alpha')
 end
 ```
-
-<br/>
 
 The environment is already set up for this to work. You can change the track to any track you like, but I usually start with alpha on a new project and then later upload directly to the beta track once the app is more mature.
 
@@ -353,8 +349,6 @@ jobs:
           path: ios/output/gym/$PROJECTNAME.ipa
           destination: /$PROJECTNAME.ipa
 ```
-
-<br/>
 
 We can't re-use the workspace created in the `verify` job. This is a limitation of building the iOS app on Circle CI and one reason why iOS takes a little longer than Android. Fortunately, we _can_ re-use the node modules cache so it's not a total loss.
 
@@ -458,8 +452,6 @@ workflows:
                 - /\d+\.\d+\.\d+/
 ```
 
-<br/>
-
 I've found it useful to have separate branches for deploying either android or ios on its own in case of errors. For instance, say android failed but iOS succeeded. You can keep pushing commits to `deploy-android` until it succeeds without changing anything else. I expect this will happen for you a few times in the beginning, but should happen less and less with experience as you work out the kinks.
 
 ## Conclusion
@@ -476,7 +468,7 @@ Thanks for reading.
 
 <details>
 <summary>Notes</summary>
-<style>small, small code { line-height: 1; }</style>
+<style>small, small code { font-size: 80%; line-height: 1; }</style>
 
 <small><strong>1</strong>:
 `bundler` will already exist in the Circle CI images, so we won't have to worry about installing it there, but the default version in Circle CI images is 1.x. We install a 1.x version of `bundler` in the project so we don't have to struggle through updating `bundler` in the Circle CI images.

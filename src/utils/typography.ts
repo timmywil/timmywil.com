@@ -23,6 +23,9 @@ TwinPeaks.overrideThemeStyles = () => ({
   },
   code: {
     backgroundColor: '#eee'
+  },
+  'pre[class*="language-"]': {
+    marginBottom: '1.5rem !important'
   }
 })
 

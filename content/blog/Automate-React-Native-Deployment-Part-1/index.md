@@ -52,8 +52,6 @@ Add this script to your `package.json`:
 }
 ```
 
-<p></p>
-
 Next, double check [git authentication][semantic-release-git-authentication], which involves setting some environment variables. Then create a GitHub token for semantic-release-bot. The [@semantic-release/github docs][semantic-release-github] explain how to do this. Specifically, follow [this guide][creating-github-token] and set `GH_TOKEN` in your environment. The token will allow the semantic-release-bot to use the GitHub API to push release notes.
 
 Here's an example config to use for semantic-release.
