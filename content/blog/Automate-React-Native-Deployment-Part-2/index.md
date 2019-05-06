@@ -157,7 +157,7 @@ As a front-end dev, my homebase is the browser console. Open one up and copy the
 > copy(JSON.stringify(o))
 ```
 
-That will remove newlines and give you a nice, single-line string for Circle CI (and your own environment for testing). After pasting, add this reference to your Circle `config.yml`:
+That will remove newlines and give you a nice, single-line string for CI (and local environments for testing). Circle CI does not strictly require this, but I've found it useful for other CIs and for adding environment variables to my own `.bash_profile`. After pasting, add this reference to your Circle `config.yml`:
 
 ```yml
 references:

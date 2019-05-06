@@ -118,7 +118,9 @@ After updating the version, `@semantic-release/git` is responsible for staging t
 
 The message is mostly default with one important difference. It removes `[skip ci]` from the end of the message. We do not want to skip CI.
 
-If you already have GPG set up for signing commits <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release. This is easy to do in our case since we're committing from our local machine. The fix is to commit using your own name and email rather than the one used for the bot. <sup>[3](#notes)</sup> Make sure these environment variables are set to the ones matching your GPG signature:
+### Signing commits with GPG
+
+If you already have GPG set up for signing commits <sup>[2](#notes)</sup>, you may also want to enable signing commits and tags made by semantic-release. This is easy to do in our case since we're committing from our local machine. The fix is to commit using your own name and email rather than than the default name and email used for the bot. <sup>[3](#notes)</sup> Make sure these environment variables are set to the ones matching your GPG signature:
 
 ```bash
 GIT_AUTHOR_NAME
@@ -143,7 +145,7 @@ Try running `yarn release -d` or `npm run release -- -d` to do a dry run of what
 
 <small><strong>2</strong>: A while back I wrote [a guide](https://medium.com/@timmywil/sign-your-commits-on-github-with-gpg-566f07762a43) on signing commits with GPG, including saving the passphrase so you don't have to enter it every commit.</small>
 
-<small><strong>3</strong>: I ran into an issue with this. I had the environment variables defined in my `.bash_profile`, but wasn't using `export` (e.g. `export GIT_AUTHOR_EMAIL=$EMAIL` rather than `GIT_AUTHOR_EMAIL=$EMAIL`). The reason for `export` is to make the variable available–say that three times fast–to other processes, like `node`. Make sure to use `export`.</small>
+<small><strong>3</strong>: I ran into an issue with this. I had the environment variables defined in my `.bash_profile`, but wasn't using `export` (e.g. `export GIT_AUTHOR_EMAIL=$EMAIL` rather than `GIT_AUTHOR_EMAIL=$EMAIL`). The reason for `export` is to make the variable available to other processes, like `node`. Make sure to use `export`.</small>
 
 </details>
 
