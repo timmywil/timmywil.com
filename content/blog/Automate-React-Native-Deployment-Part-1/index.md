@@ -1,7 +1,7 @@
 ---
 title: Automate React Native Deployment - Part 1
 date: '2019-05-07T09:00:00.400Z'
-draft: true
+draft: false
 ---
 
 I'm a fan of React Native. It allows me to build native mobile apps using JavaScript. That's no small feat, but no tool is perfect. React Native has its frustrating quirks and time-consuming challenges, as any library as heavy as React Native might. Automating deployment has been one of those challenges. I've fiddled with deployment processes across several projects over the years and I was never really satisfied with the results. It took many iterations: adding new tools, removing stale ones, using old tools in new ways, but I recently realized that I reached my goal.
