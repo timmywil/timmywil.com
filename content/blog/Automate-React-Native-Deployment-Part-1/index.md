@@ -1,6 +1,6 @@
 ---
 title: Automate React Native Deployment - Part 1
-date: '2019-05-07T09:00:00.400Z'
+date: '2019-05-06T09:00:00.400Z'
 draft: false
 ---
 
