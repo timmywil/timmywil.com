@@ -308,8 +308,23 @@ First, here's the config for Circle. Replace `$PROJECTNAME` with your project na
 ```yml
 references:
   # ...
-  gems_cache_key_ios: &gems_cache_key_ios
-    ios-bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+  # The node module cache for macos machines must
+  # be separate from the other node module cache
+  # because the home directory differs.
+  restore_yarn_cache_macos: &restore_yarn_cache_macos
+    restore_cache:
+      keys:
+        # when lock file changes, use increasingly general patterns to restore cache
+        - yarn-packages-macos-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-packages-macos-v4-{{ .Branch }}-
+        - yarn-packages-macos-v4-
+  save_yarn_cache_macos: &save_yarn_cache_macos
+    save_cache:
+      paths:
+        - node_modules/
+      key: yarn-packages-macos-v4-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+  gems_cache_key_ios: &gems_cache_key_ios ios-bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
   restore_gems_cache_ios: &restore_gems_cache_ios
     restore_cache:
       key: *gems_cache_key_ios
@@ -322,16 +337,16 @@ jobs:
   # ...
   deploy_ios:
     macos:
-      xcode: "10.1.0"
+      xcode: '10.1.0'
     working_directory: ~/project
     environment:
       FL_OUTPUT_DIR: output
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - *restore_yarn_cache
+      - *restore_yarn_cache_macos
       - run: yarn --frozen-lockfile
-      - *save_yarn_cache
+      - *save_yarn_cache_macos
 
       - *restore_gems_cache_ios
       - run:
