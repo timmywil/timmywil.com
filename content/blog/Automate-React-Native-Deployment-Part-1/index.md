@@ -10,6 +10,8 @@ I should point out that I didn't create some silver bullet to the deployment pro
 
 Part 1 will establish some project assumptions that are required for this process to work, and then walk through the first half of the setup. This is meant to be an example of what is possible. Some of these tools have alternatives that would be relatively easy to swap–such as Circle CI with pretty much any other CI–but I'm going to stick with what I used and maybe you can take it from there.
 
+To see everything put together, check out [the working example repo with all code samples](https://github.com/timmywil/react-native-deployment-example).
+
 ## Bird's eye view
 
 When this series is complete, you should have a working deployment flow that runs with one command: `yarn release` (or `npm run release`). Here's an overview of the whole process:

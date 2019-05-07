@@ -4,7 +4,7 @@ date: '2019-05-13T09:00:00.400Z'
 draft: true
 ---
 
-In [part 1][part-1], we discussed how to set up [semantic-release][semantic-release] and [react-native-version][react-native-version]. That covers the first part of the deployment flow from commit to GitHub. In this post, we'll take a look at the configs for verification and deployment. The CI configs shared in this post are for Circle CI, but the workflow can be applied to any CI. Here's what we'll cover:
+In [part 1][part-1], we discussed how to set up [semantic-release][semantic-release] and [react-native-version][react-native-version]. That covers the first part of the deployment flow from commit to GitHub. In this post, we'll take a look at the configs for verification and deployment. The CI configs shared in this post are for Circle CI, but the workflow can be applied to any CI. A working example repo can be found [here](https://github.com/timmywil/react-native-deployment-example). Here's what we'll cover:
 
 ![Automate React Native Deployment Part 2](./rn-deployment-diagram-part-2.png)
 
@@ -116,6 +116,10 @@ BUNDLE_PATH: "../vendor/bundle"
 
 This setup allows us to have separate fastlane folders for iOS and Android, but still share gems and manage them with a single `Gemfile`.
 
+Add `vendor/` to your `.gitignore`.
+
+Now run `bundle exec fastlane init` in both the `ios/` and `android/` folders. Using the manual setup option will allow you skip some steps and just get the necessary files in place. We'll be editing the `Fastfile` in each folder.
+
 ### Circle CI environment variables
 
 ![Circle CI Environment Variables](./circle-env-vars.png)
@@ -167,7 +171,7 @@ references:
       command: echo $GOOGLE_PLAY_CREDS_JSON > android-developer-creds.json
 ```
 
-This will write the JSON to a file so it can be read when fastlane builds. The JSON is not logged to the CI logs.
+This will write the JSON to a file so it can be read when fastlane builds. The JSON is not logged to the CI logs. Add `android-developer-creds.json` to your `.gitignore`.
 
 #### Android code signing
 
@@ -200,15 +204,15 @@ Here's the Circle config for the deploy job:
 
 ```yml
 references:
-  decode_android_key: &decode_android_key
-    run:
-      name: Decode Android keystore
-      command: echo $ANDROID_KEYSTORE | base64 -di | tee release-key.keystore app/release-key.keystore >/dev/null
-
   create_google_play_key: &create_google_play_key
     run:
       name: Create Google Play key
       command: echo $GOOGLE_PLAY_CREDS_JSON > android-developer-creds.json
+
+  decode_android_key: &decode_android_key
+    run:
+      name: Decode Android keystore
+      command: echo $ANDROID_KEYSTORE | base64 -di | tee release-key.keystore app/release-key.keystore >/dev/null
 
   gems_cache_key_android: &gems_cache_key_android android-bundle-v1-{{ checksum "../Gemfile.lock" }}-{{ arch }}
 
@@ -280,7 +284,7 @@ Here's an example fastlane config for Android.
 ```ruby
 # android/fastlane/Fastfile
 desc "Build the Android app"
-lane :assemble_build
+lane :assemble_build do
   properties = {
     "android.injected.signing.store.file" => "release-key.keystore",
     "android.injected.signing.store.password" => ENV['ANDROID_STORE_PASSWORD'],
@@ -299,7 +303,7 @@ lane :deploy do
 end
 ```
 
-The environment is already set up for this to work. You can change the track to any track you like, but I usually start with alpha on a new project and then later upload directly to the beta track once the app is more mature.
+The environment is already set up for this to work. You can change the track to any track you like, but I usually start with alpha on a new project and then later upload directly to the beta track once the app is more mature. Test the build with `bundle exec fastlane assemble_build` from the `android/` folder.
 
 ### iOS
 
@@ -365,7 +369,7 @@ jobs:
           destination: /$PROJECTNAME.ipa
 ```
 
-We can't re-use the workspace created in the `verify` job. This is a limitation of building the iOS app on Circle CI and one reason why iOS takes a little longer than Android. Fortunately, we _can_ re-use the node modules cache so it's not a total loss.
+We can't re-use the workspace created in the `verify` job. This is a limitation of building the iOS app on Circle CI and one reason why iOS takes a little longer than Android. Fortunately, we _can_ still cache the node modules so it's not a total loss.
 
 Double check that the XCode version is the one you want.
 
@@ -379,7 +383,7 @@ When you get code signing working (test with `fastlane assemble_build` locally),
 
 Here's an example fastlane config for iOS.
 
-Replace `com.org_example.example` with your project name and double check the name of the provisioning profile. I've used `"AppStore"` here.
+Replace `com.org_example.example` with your project name and double check the name of the provisioning profile. Also replace `$PREFERRED_SCHEME` with the right build scheme (this is usually just the project name). I've used `"AppStore"` here.
 
 ```ruby
 # ios/fastlane/Fastfile
@@ -394,6 +398,7 @@ desc "Build the iOS app"
 lane :assemble_build do
   match(type: "appstore")
   gym(
+    scheme: "$PREFERRED_SCHEME",
     export_method: "app-store",
     export_options: {
       provisioningProfiles: {
