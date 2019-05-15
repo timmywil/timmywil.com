@@ -1,7 +1,7 @@
 ---
 title: Automate React Native Deployment - Part 2
-date: '2019-05-13T09:00:00.400Z'
-draft: true
+date: '2019-05-15T09:00:00.400Z'
+draft: false
 ---
 
 In [part 1][part-1], we discussed how to set up [semantic-release][semantic-release] and [react-native-version][react-native-version]. That covers the first part of the deployment flow from commit to GitHub. In this post, we'll take a look at the configs for verification and deployment. The CI configs shared in this post are for Circle CI, but the workflow can be applied to any CI. A working example repo can be found [here](https://github.com/timmywil/react-native-deployment-example). Here's what we'll cover:
