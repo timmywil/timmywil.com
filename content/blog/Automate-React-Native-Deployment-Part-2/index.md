@@ -385,7 +385,9 @@ When you get code signing working (test with `fastlane assemble_build` locally),
 
 Here's an example fastlane config for iOS.
 
-Replace `com.org_example.example` with your project name and double check the name of the provisioning profile. Also replace `$PREFERRED_SCHEME` with the right build scheme (this is usually just the project name). I've used `"AppStore"` here.
+Replace `com.org_example.example` with your project name and double check the name of the provisioning profile. I've used `"AppStore"` here.
+
+Also replace `$PREFERRED_SCHEME` with the right build scheme (this is usually just the project name).
 
 ```ruby
 # ios/fastlane/Fastfile
