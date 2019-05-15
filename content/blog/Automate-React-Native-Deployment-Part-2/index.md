@@ -68,7 +68,7 @@ There are lots of unit test setups so I won't cover that here, but I will share 
 }
 ```
 
-Your `.prettierignore` file should include `node_modules/**`, `ios/**`, `android/**`, and any other files you don't want to check. Also note that this `lint` task is not meant to be used on commit. For something like that, you'd only want to check changed files. Packages like [precise-commits][precise-commits] are helpful for that.
+Your `.prettierignore` file should include `node_modules/**`, `ios/**`, `android/**`, and any other files you don't want to check. Also note that this `lint` task is not meant to be used on commit. For something like that, you'd only want to check staged files. [precise-commits][precise-commits] is great for checking `prettier` formatting on changed files.
 
 ## Why fastlane in CI?
 
@@ -175,7 +175,7 @@ This will write the JSON to a file so it can be read when fastlane builds. The J
 
 #### Android code signing
 
-`ANDROID_KEYSTORE`, `ANDROID_KEY_ALIAS`, and `ANDROID_STORE_PASSWORD` are used to sign the Android release. I use the same password (`ANDROID_STORE_PASSWORD`) for both reading the keystore and signing. Consult the [android developer docs][android-docs] to set up Android code signing.
+`ANDROID_KEYSTORE`, `ANDROID_KEY_ALIAS`, and `ANDROID_STORE_PASSWORD` are used to sign the Android release. I use the same password (`ANDROID_STORE_PASSWORD`) for both reading the keystore and signing. Some frown upon this, and you're free to make them separate passwords and separate environment variables. Consult the [android developer docs][android-docs] to set up Android code signing.
 
 The important issue for us is the way we store the binary `.keystore` file as an environment variable. The best solution I've found is a bit fancy: encode the file using base64 and then decode it in Circle CI on-demand.
 
@@ -275,7 +275,9 @@ jobs:
           destination: /apk/
 ```
 
-The deploy job reuses the workspace we created in [part 1][part-1], rather than re-installing node modules. Android gradle dependencies and ruby gems are given their own caches for faster subsequent builds. The key creation references are used once dependencies are installed. And finally, it's time to build and deploy the Android app using fastlane.
+The deploy job reuses the workspace we created in [part 1][part-1], rather than re-installing node modules. Android gradle dependencies and ruby gems are given their own caches for faster subsequent builds. The key creation references are used once dependencies are installed.
+
+Finally, it's time to build and deploy the Android app using fastlane.
 
 #### Deploying the Android app using fastlane
 
