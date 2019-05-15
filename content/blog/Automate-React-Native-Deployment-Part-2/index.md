@@ -497,7 +497,7 @@ Thanks for reading.
 </small>
 
 <small><strong>2</strong>:
-This is measured by adding the `yarn` command time to the measured times in Circle CI and is an approximated average. I sometimes get deployments that take 6 minutes and sometimes 10 minutes, mostly depending on whether dependencies have changed. By the way, the most impactful change I've made to keep deployments fast is committing `Pods` to source control. I know it feels wrong at first, but the [cocoapods creators recommend it](https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control) and it makes things simple. Trust me, it cut my iOS build times in half.
+This time is measured by adding the `yarn` command time to the measured times in Circle CI and subtracting the time it takes for Apple to process the build, which can vary. I sometimes get deployments that take 6 minutes and sometimes 10 minutes, mostly depending on whether dependencies have changed. By the way, the most impactful change I've made to keep deployments fast is committing `Pods` to source control. I know it feels wrong at first, but the [cocoapods creators recommend it](https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control) and it makes things simple. Trust me, it cut my iOS build times in half.
 </small>
 
 </details>
