@@ -2,7 +2,7 @@
   "name": "timmywil.com",
   "private": true,
   "description": "Personal blog and website for Timmy Willison",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "commit": "git-cz",
