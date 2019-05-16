@@ -107,7 +107,7 @@ Make sure it's installed and add this to your `package.json`:
 
 ```json
 "scripts": {
-  "postversion": "react-native-version"
+  "postversion": "react-native-version --never-amend"
   ...
 }
 ```
