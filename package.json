@@ -54,7 +54,7 @@
     "typography-theme-twin-peaks": "^0.16.19"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.5.2",
+    "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^7.5.0",
     "@commitlint/prompt": "^7.5.0",
     "@graphql-codegen/cli": "^1.1.0",
