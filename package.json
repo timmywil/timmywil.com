@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "@commitlint/prompt": "^7.5.0",
     "@graphql-codegen/cli": "^1.1.0",
     "@graphql-codegen/typescript": "1.1.3",
