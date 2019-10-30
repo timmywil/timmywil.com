@@ -2,7 +2,6 @@
  * Create a new blog post given a title
  * Usage: node post.js "Blog Post Title" ["Here is an optional blog post description"]
  */
-'use strict'
 
 const path = require('path')
 const mkdirp = require('mkdirp')

@@ -9,7 +9,7 @@
     "commit": "git-cz",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "lint": "concurrently --raw \"yarn type-check\" \"yarn tslint\" \"yarn prettier\"",
+    "lint": "concurrently --raw \"yarn type-check\" \"yarn eslint\" \"yarn prettier\"",
     "lint:fix": "concurrently --raw \"yarn type-check\" \"lint-staged\"",
     "post": "node tasks/post.js",
     "prettier": "prettier --check \"**/*.tsx\" \"**/*.ts\" \"**/*.js\"",
@@ -17,7 +17,7 @@
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
     "start": "rm -rf public/ .cache/ && gatsby develop",
-    "tslint": "tslint -p tsconfig.json -c tslint.json",
+    "eslint": "eslint .",
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -29,7 +29,7 @@
     "gatsby-plugin-feed": "^2.3.5",
     "gatsby-plugin-google-analytics": "^2.1.4",
     "gatsby-plugin-manifest": "^2.2.4",
-    "gatsby-plugin-offline": "^2.2.4",
+    "gatsby-plugin-offline": "^3.0.17",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-plugin-typescript": "^2.1.2",
@@ -63,8 +63,14 @@
     "@semantic-release/git": "^7.0.16",
     "@types/react-helmet": "^5.0.8",
     "@types/typography": "^0.16.2",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
     "commitizen": "^4.0.3",
-    "concurrently": "^4.1.1",
+    "concurrently": "^5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "gh-pages": "^2.0.1",
     "graphql": "^14.4.2",
     "husky": "^3.0.1",
@@ -72,9 +78,7 @@
     "lodash.template": "^4.5.0",
     "mkdirp": "^0.5.1",
     "prettier": "^1.18.2",
-    "semantic-release": "^15.13.18",
-    "tslint": "^5.18.0",
-    "tslint-config-prettier": "^1.18.0"
+    "semantic-release": "^15.13.18"
   },
   "bugs": {
     "url": "https://github.com/timmywil/timmywil.com/issues"
@@ -130,7 +134,7 @@
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "prettier --write",
-      "tslint --fix -c tslint.json",
+      "eslint --fix .",
       "git add"
     ]
   }
