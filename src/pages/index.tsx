@@ -1,7 +1,6 @@
 import { css, Global } from '@emotion/core'
 import { graphql, Link, PageRendererProps } from 'gatsby'
 import React from 'react'
-import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { Query } from '../utils/graphql'
 import { rhythm } from '../utils/typography'
@@ -58,7 +57,6 @@ export default function Index({ data }: Props) {
           .
         </h2>
       </div>
-      <Footer />
     </div>
   )
 }
