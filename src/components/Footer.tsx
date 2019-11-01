@@ -31,8 +31,9 @@ const Container = styled.footer`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #eeeeee;
-  background-color: white;
+  border-top: 1px solid var(--main-border-color);
+  background-color: var(--main-background);
+  color: var(--main-color);
 
   @media (max-width: 450px) {
     flex-direction: column;
@@ -40,10 +41,24 @@ const Container = styled.footer`
     padding-bottom: ${rhythm(1)};
     height: ${rhythm(5)};
   }
+  @media (prefers-color-scheme: dark and (max-width: 450px)) {
+    height: ${rhythm(6)};
+  }
 `
 
 const Copyright = styled.div`
   text-align: right;
+`
+
+const DarkModeNotice = styled.div`
+  display: none;
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 10px 0 5px;
+
+  @media (prefers-color-scheme: dark) {
+    display: block;
+  }
 `
 
 export default function Footer() {
@@ -52,6 +67,7 @@ export default function Footer() {
   return (
     <Container>
       <SocialLinks social={social} />
+      <DarkModeNotice>Detected OS dark mode</DarkModeNotice>
       <Copyright>
         &copy; {new Date().getFullYear()} {author}
       </Copyright>

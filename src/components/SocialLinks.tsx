@@ -19,15 +19,24 @@ const SocialLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--main-border-color);
   border-radius: 3px;
   background-image: none;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    background-image: none;
   }
   &:active {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.7);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   }
 `
 
@@ -37,6 +46,10 @@ const SVGIcon = styled.svg`
   display: inline-block;
   fill: #828282;
   line-height: 0;
+
+  @media (prefers-color-scheme: dark) {
+    fill: white;
+  }
 `
 
 interface Props {

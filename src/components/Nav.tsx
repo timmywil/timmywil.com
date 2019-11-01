@@ -49,8 +49,8 @@ const styles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e8e8e8;
-    background-color: white;
+    border-bottom: 1px solid var(--main-border-color);
+    background-color: var(--main-background);
   `,
   rightSide: css`
     height: 100%;
@@ -71,8 +71,11 @@ const styles = {
     background-image: none;
     transition: all 0.2s cubic-bezier(0.28, 0.32, 0.29, 0.79);
 
-    &:hover {
-      color: #276eca;
+    &:hover,
+    &:visited {
+      color: var(--link-color);
+      text-decoration: none;
+      background-image: none;
     }
     &:after {
       content: '';
@@ -83,7 +86,7 @@ const styles = {
       width: 0;
       height: 0;
       transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-      background-color: #2a7ae2;
+      background-color: var(--link-color-hover);
     }
     &:hover:after {
       left: 0;
@@ -95,8 +98,8 @@ const styles = {
     }
   `,
   navLinkActive: {
-    color: '#111',
-    backgroundColor: 'white',
+    color: 'var(--main-color)',
+    backgroundColor: 'var(--main-background)',
     boxShadow: 'none',
     textShadow: 'none',
     cursor: 'default'

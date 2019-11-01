@@ -1,27 +1,29 @@
-import { css } from '@emotion/core'
+import { css, Global } from '@emotion/core'
 import { graphql, Link, PageRendererProps } from 'gatsby'
 import React from 'react'
 import Footer from '../components/Footer'
 import SEO from '../components/SEO'
 import { Query } from '../utils/graphql'
 import { rhythm } from '../utils/typography'
+import globalStyles from '../utils/globalStyles'
 
 type Props = PageRendererProps & {
   data: Query
 }
 
-export default function BlogIndex({ data }: Props) {
+export default function Index({ data }: Props) {
   const siteTitle = data.site.siteMetadata.title
 
   return (
     <div css={styles.container}>
+      <Global styles={globalStyles} />
       <SEO
         title={siteTitle}
         keywords={['blog', 'timmywil', 'Timmy Willison', 'javascript', 'react']}
       />
       <div css={styles.content}>
         <h1 css={styles.homepageHeader}>Hi!</h1>
-        <h1 css={styles.homepageHeader}>I'm Timmy Willison</h1>
+        <h1 css={styles.homepageHeader}>I&rsquo;m Timmy Willison</h1>
         <h1 css={styles.homepageHeader}>
           Team Lead for{' '}
           <a css={styles.homepageLink} href="https://jquery.com">
@@ -69,7 +71,7 @@ const styles = {
     right: 0;
     bottom: 0;
     min-height: 800px;
-    background-image: linear-gradient(50deg, #19bd9e, #108ab2);
+    background-image: linear-gradient(50deg, var(--secondary-color), var(--primary-color));
     padding: ${rhythm(1)};
     padding-bottom: ${rhythm(4)};
     display: flex;
@@ -98,13 +100,21 @@ const styles = {
       rgba(0, 0, 0, 0) 2px
     );
 
+    &:visited {
+      color: #eee;
+    }
+
     &:hover {
       color: #ddd;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    &:visited {
-      color: #eee;
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 1px,
+        #ddd 1px,
+        #ddd 2px,
+        rgba(0, 0, 0, 0) 2px
+      );
     }
   `
 }
