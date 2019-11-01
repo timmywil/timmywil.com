@@ -54,8 +54,10 @@ const DarkModeNotice = styled.div`
   display: none;
   font-size: 14px;
   line-height: 1.2;
-  margin: 10px 0 5px;
 
+  @media (max-width: 450px) {
+    margin: 10px 0 5px;
+  }
   @media (prefers-color-scheme: dark) {
     display: block;
   }
