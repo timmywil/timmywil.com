@@ -11,7 +11,7 @@ const args = process.argv.slice(2)
 const rspaces = /[\s-]+/g
 
 const postTemplate = template(`---
-title: <%- title %>
+title: '<%- title %>'
 date: '<%- date %>'<% if(typeof description !== 'undefined') { %>
 description: <%- description %>
 <% } %>
