@@ -15,16 +15,16 @@ draft: false
 1. Rather than passing callbacks or using jQuery events, the new Panzoom triggers native events. For instance, listen to the `panzoomend` event with `elem.addEventListener('panzoomend', ...)`.
 1. Panzoom has been rewritten in TypeScript. Types are included with the package.
 1. Documentation is now generated from TypeScript types and a custom script concatenates it all into the README.
-1. Panzoom no longer uses complicated matrix calculations internally and instead relies on what browser implementors have already built. This allowed me to remove a lot of code. Customizing the transform is easy with the new `setTransform` option.
+1. Panzoom no longer uses complicated matrix calculations internally and instead relies on what browser implementors have already built. Moving to this paradigm played a major role in reducing the code size. Customizing the transform is easy with the new `setTransform` option.
 
 ## How is this different from other panning and/or zooming libraries?
 
 - Many libraries use JavaScript animations rather than CSS transitions.
-- Panzoom supports Pointer Events and treats them as first-class where supported. Even pinch zooming with pointer events on mobile devices is supported!
+- Panzoom supports [Pointer Events](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent), even when pinch zooming on mobile devices!
+- Panzoom is tiny (3.5kb gzipped). There are powerful libraries that support things like focal point zooming, but those libraries are often significantly larger.
 - Panzoom relies on the native event API for events rather than redefining an event system using callbacks (i.e. `elem.addEventListener('panzoomend', ...)` instead of `Panzoom(elem, { onPanzoomEnd: fn }))`.
 - Panzoom defines TypeScript types. Many libraries are written in JS and have no types.
-- Panzoom is tiny (3.5kb gzipped). There are powerful libraries that support things like focal point zooming, but those libraries are often significantly larger.
-- Panzoom supports SVG, which is not necessarily uncommon, but because it uses CSS transforms (and only supports modern browsers), SVG follows the same codepath as HTML. This also helps Panzoom stay small.
+- Panzoom supports SVG, which is not necessarily uncommon, but because it uses CSS transforms, SVG follows the same codepath as HTML. This also helps Panzoom stay small.
 
 ## Try it out
 
