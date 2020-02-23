@@ -1,10 +1,11 @@
-import { css, Global } from '@emotion/core'
-import { graphql, Link, PageRendererProps } from 'gatsby'
+import { Global, css } from '@emotion/core'
+import { Link, PageRendererProps, graphql } from 'gatsby'
+
+import { Query } from '../utils/graphql'
 import React from 'react'
 import SEO from '../components/SEO'
-import { Query } from '../utils/graphql'
-import { rhythm } from '../utils/typography'
 import globalStyles from '../utils/globalStyles'
+import { rhythm } from '../utils/typography'
 
 type Props = PageRendererProps & {
   data: Query
@@ -32,8 +33,8 @@ export default function Index({ data }: Props) {
         </h1>
         <h1 css={styles.homepageHeader}>
           Lead Front-End Engineer at{' '}
-          <a css={styles.homepageLink} href="https://pylon.com">
-            Pylon AI
+          <a css={styles.homepageLink} href="https://spokestack.io">
+            Spokestack
           </a>
           .
         </h1>
