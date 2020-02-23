@@ -2,7 +2,7 @@
   "name": "timmywil.com",
   "private": true,
   "description": "Personal blog and website for Timmy Willison",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "build": "gatsby clean && gatsby build",
@@ -118,7 +118,9 @@
     }
   },
   "release": {
-    "branches": ["develop"],
+    "branches": [
+      "develop"
+    ],
     "ci": false,
     "npmPublish": false,
     "pre-commit": "yarn lint:fix",
