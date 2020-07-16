@@ -8,7 +8,7 @@ const mkdirp = require('mkdirp')
 const fs = require('fs')
 const template = require('lodash.template')
 const args = process.argv.slice(2)
-const rspaces = /[\s-]+/g
+const rspaces = /[\s-:\.]+/g
 
 const postTemplate = template(`---
 title: '<%- title %>'
