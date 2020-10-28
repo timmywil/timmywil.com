@@ -2,7 +2,7 @@
   "name": "timmywil.com",
   "private": true,
   "description": "Personal blog and website for Timmy Willison",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "build": "gatsby clean && gatsby build",
