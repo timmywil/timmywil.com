@@ -5,7 +5,7 @@
   "version": "1.4.3",
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "gatsby build",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "format": "eslint . --fix && prettier --write \"**/*.tsx\" \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.md\"",
     "lint": "eslint . && prettier --check \"**/*.md\" \"**/*.json\"",
@@ -13,7 +13,7 @@
     "release": "release-it",
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
-    "start": "gatsby clean && gatsby develop",
+    "start": "gatsby develop",
     "test": "concurrently --raw \"npm run lint\" \"npm run typescript\"",
     "typescript": "tsc -p tsconfig.json --noEmit"
   },
@@ -145,6 +145,7 @@
   "release-it": {
     "verbose": 2,
     "hooks": {
+      "before:init": "npm run build",
       "after:git:release": "npm run deploy"
     },
     "git": {
