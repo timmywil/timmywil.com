@@ -10,7 +10,7 @@
     "format": "eslint . --fix && prettier --write \"**/*.tsx\" \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.md\"",
     "lint": "eslint . && prettier --check \"**/*.md\" \"**/*.json\"",
     "post": "node tasks/post.js",
-    "release": "semantic-release",
+    "release": "release-it",
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
     "start": "gatsby clean && gatsby develop",
@@ -55,8 +55,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@graphql-codegen/cli": "^1.19.0",
     "@graphql-codegen/typescript": "^1.17.11",
-    "@semantic-release/exec": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
+    "@release-it/conventional-changelog": "^2.0.0",
     "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^6.1.0",
     "@types/typography": "^0.16.2",
@@ -73,7 +72,7 @@
     "lodash.template": "^4.5.0",
     "mkdirp": "^1.0.4",
     "prettier": "^2.1.2",
-    "semantic-release": "^17.2.1"
+    "release-it": "^14.2.0"
   },
   "bugs": {
     "url": "https://github.com/timmywil/timmywil.com/issues"
@@ -143,25 +142,27 @@
     ".cache/",
     "public/"
   ],
-  "release": {
-    "branches": [
-      "develop"
-    ],
-    "ci": false,
-    "npmPublish": false,
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      [
-        "@semantic-release/exec",
-        {
-          "publishCmd": "npm run deploy"
-        }
-      ],
-      "@semantic-release/github"
-    ],
-    "tagFormat": "${version}"
+  "release-it": {
+    "verbose": 2,
+    "hooks": {
+      "after:git:release": "npm run deploy"
+    },
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "requireBranch": "develop",
+      "tagName": "${version}"
+    },
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "PERSONAL_WEBSITE_GITHUB_TOKEN"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
   }
 }
