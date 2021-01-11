@@ -1,6 +1,6 @@
-import { css } from '@emotion/core'
 import { Link } from 'gatsby'
 import React from 'react'
+import { css } from '@emotion/react'
 import { rhythm } from '../utils/typography'
 
 export default function Nav() {

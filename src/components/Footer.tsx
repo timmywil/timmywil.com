@@ -1,8 +1,9 @@
-import styled from '@emotion/styled'
 import { graphql, useStaticQuery } from 'gatsby'
+
 import React from 'react'
-import { rhythm } from '../utils/typography'
 import SocialLinks from './SocialLinks'
+import { rhythm } from '../utils/typography'
+import styled from '@emotion/styled'
 
 const footerQuery = graphql`
   query footerQuery {

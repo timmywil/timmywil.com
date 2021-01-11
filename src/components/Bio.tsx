@@ -1,10 +1,11 @@
-import { css } from '@emotion/core'
-import styled from '@emotion/styled'
-import { graphql, useStaticQuery } from 'gatsby'
 import Image, { FixedObject } from 'gatsby-image'
-import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+
 import { Query } from '../utils/graphql'
+import React from 'react'
+import { css } from '@emotion/react'
 import { rhythm } from '../utils/typography'
+import styled from '@emotion/styled'
 
 type QueryType = Query & { avatar: { childImageSharp: { fixed: FixedObject } } }
 

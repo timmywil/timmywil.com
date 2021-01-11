@@ -1,4 +1,4 @@
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/react'
 import { Link, PageRendererProps, graphql } from 'gatsby'
 
 import { Query } from '../utils/graphql'

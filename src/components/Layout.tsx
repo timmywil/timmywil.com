@@ -1,10 +1,11 @@
-import styled from '@emotion/styled'
 import React, { ReactNode } from 'react'
-import { rhythm } from '../utils/typography'
+
 import Footer from './Footer'
+import { Global } from '@emotion/react'
 import Nav from './Nav'
-import { Global } from '@emotion/core'
 import globalStyles from '../utils/globalStyles'
+import { rhythm } from '../utils/typography'
+import styled from '@emotion/styled'
 
 const Wrapper = styled.div`
   margin-left: auto;
