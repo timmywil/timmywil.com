@@ -1,6 +1,8 @@
 package.json
 package-lock.json
+yarn.lock
 node_modules/**
+.yarn/**
 *.snap
 .next/**
 coverage/**
@@ -17,3 +19,4 @@ android/**
 *.graphql
 app/graphql/fragmentTypes.json
 public/
+*.d.ts

@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-import React from 'react'
 import SocialLinks from './SocialLinks'
 import { rhythm } from '../utils/typography'
 import styled from '@emotion/styled'

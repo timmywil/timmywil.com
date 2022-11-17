@@ -1,10 +1,10 @@
-import { graphql, Link, PageRendererProps } from 'gatsby'
-import React from 'react'
+import { Link, PageRendererProps, graphql } from 'gatsby'
+import { MarkdownRemark, Query } from '../utils/graphql'
+import { rhythm, scale } from '../utils/typography'
+
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import { MarkdownRemark, Query } from '../utils/graphql'
-import { rhythm, scale } from '../utils/typography'
 
 type Props = PageRendererProps & {
   data: Query
@@ -33,7 +33,8 @@ export default function BlogPostTemplate({ data, pageContext }: Props) {
           display: `block`,
           marginBottom: rhythm(1),
           marginTop: rhythm(-0.5)
-        }}>
+        }}
+      >
         {post.frontmatter.date}
       </p>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -50,7 +51,8 @@ export default function BlogPostTemplate({ data, pageContext }: Props) {
           justifyContent: 'space-between',
           listStyle: 'none',
           padding: 0
-        }}>
+        }}
+      >
         <li>
           {previous && (
             <Link to={previous.fields.slug} rel="prev">

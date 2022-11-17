@@ -1,8 +1,8 @@
-import { graphql, PageRendererProps } from 'gatsby'
-import React from 'react'
+import { PageRendererProps, graphql } from 'gatsby'
+
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import { Query } from '../utils/graphql'
+import SEO from '../components/SEO'
 
 type Props = PageRendererProps & {
   data: Query

@@ -1,8 +1,8 @@
-import { graphql, Link, PageRendererProps } from 'gatsby'
-import React from 'react'
+import { Link, PageRendererProps, graphql } from 'gatsby'
+
 import Layout from '../components/Layout'
-import SEO from '../components/SEO'
 import { Query } from '../utils/graphql'
+import SEO from '../components/SEO'
 import { rhythm } from '../utils/typography'
 
 type Props = PageRendererProps & {
@@ -23,7 +23,8 @@ export default function Blog({ data }: Props) {
             <h3
               style={{
                 marginBottom: rhythm(1 / 4)
-              }}>
+              }}
+            >
               <Link to={node.fields.slug}>{title}</Link>
             </h3>
             <small>{node.frontmatter.date}</small>
@@ -40,14 +41,14 @@ export default function Blog({ data }: Props) {
 }
 
 export const pageQuery = graphql`
-  query {
+  query blogQuery {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { draft: { ne: true } } }
     ) {
       edges {

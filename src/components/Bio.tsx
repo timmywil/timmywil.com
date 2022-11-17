@@ -2,7 +2,6 @@ import Image, { FixedObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { Query } from '../utils/graphql'
-import React from 'react'
 import { css } from '@emotion/react'
 import { rhythm } from '../utils/typography'
 import styled from '@emotion/styled'

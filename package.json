@@ -6,73 +6,93 @@
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public -b master",
+    "deploy": "gatsby build && gh-pages -d public -b gh-pages",
     "format": "eslint . --fix && prettier --write \"**/*.tsx\" \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.md\"",
     "lint": "eslint . && prettier --check \"**/*.md\" \"**/*.json\"",
     "post": "node tasks/post.js",
+    "prepare": "husky install",
     "release": "release-it",
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
     "start": "gatsby develop",
-    "test": "concurrently --raw \"npm run lint\" \"npm run typescript\"",
+    "test": "yarn lint",
     "typescript": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@emotion/react": "^11.1.4",
-    "@emotion/styled": "^11.0.0",
-    "gatsby": "^2.30.1",
-    "gatsby-image": "^2.9.0",
-    "gatsby-plugin-emotion": "^5.2.0",
-    "gatsby-plugin-feed": "^2.11.0",
-    "gatsby-plugin-google-analytics": "^2.9.0",
-    "gatsby-plugin-manifest": "^2.10.0",
-    "gatsby-plugin-offline": "^3.8.0",
-    "gatsby-plugin-react-helmet": "^3.8.0",
-    "gatsby-plugin-sharp": "^2.12.0",
-    "gatsby-plugin-typescript": "^2.10.0",
-    "gatsby-plugin-typography": "^2.10.0",
-    "gatsby-remark-copy-linked-files": "^2.8.0",
-    "gatsby-remark-images": "^3.9.0",
-    "gatsby-remark-prismjs": "^3.11.0",
-    "gatsby-remark-responsive-iframe": "^2.9.0",
-    "gatsby-remark-smartypants": "^2.8.0",
-    "gatsby-source-filesystem": "^2.9.0",
-    "gatsby-transformer-remark": "^2.14.0",
-    "gatsby-transformer-sharp": "^2.10.0",
-    "prismjs": "^1.23.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@reach/router": "^1.3.4",
+    "caniuse-lite": "^1.0.30001431",
+    "compass-vertical-rhythm": "^1.4.5",
+    "gatsby": "^5.0.1",
+    "gatsby-image": "^3.11.0",
+    "gatsby-plugin-emotion": "^8.0.0",
+    "gatsby-plugin-feed": "^5.0.0",
+    "gatsby-plugin-google-analytics": "^5.0.0",
+    "gatsby-plugin-manifest": "^5.0.0",
+    "gatsby-plugin-offline": "^6.0.0",
+    "gatsby-plugin-react-helmet": "^6.0.0",
+    "gatsby-plugin-sharp": "^5.0.0",
+    "gatsby-plugin-typescript": "^5.0.0",
+    "gatsby-plugin-typography": "^5.0.0",
+    "gatsby-remark-copy-linked-files": "^6.0.0",
+    "gatsby-remark-images": "^7.0.0",
+    "gatsby-remark-prismjs": "^7.0.0",
+    "gatsby-remark-responsive-iframe": "^6.0.0",
+    "gatsby-remark-smartypants": "^6.0.0",
+    "gatsby-source-filesystem": "^5.0.0",
+    "gatsby-transformer-remark": "^6.0.0",
+    "gatsby-transformer-sharp": "^5.0.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-typography": "^0.16.19",
-    "serialize-javascript": "^5.0.1",
+    "react-typography": "^0.16.20",
+    "serialize-javascript": "^6.0.0",
     "typeface-rosario": "^1.1.13",
-    "typescript": "^4.1.3",
-    "typography": "^0.16.19",
+    "typescript": "^4.9.3",
+    "typography": "^0.16.21",
     "typography-theme-twin-peaks": "^0.16.19"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@graphql-codegen/cli": "^1.20.0",
-    "@graphql-codegen/typescript": "^1.20.0",
-    "@release-it/conventional-changelog": "^2.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-helmet": "^6.1.0",
-    "@types/typography": "^0.16.2",
-    "@typescript-eslint/eslint-plugin": "^4.13.0",
-    "@typescript-eslint/parser": "^4.13.0",
-    "concurrently": "^5.3.0",
-    "eslint": "^7.17.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "gh-pages": "^3.1.0",
-    "graphql": "^14.7.0",
-    "husky": "^4.3.7",
+    "@babel/core": "^7.20.2",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@graphql-codegen/cli": "^2.13.12",
+    "@graphql-codegen/typescript": "^2.8.2",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "@types/babel__core": "^7.1.20",
+    "@types/compass-vertical-rhythm": "^1.4.2",
+    "@types/node": "^18.11.9",
+    "@types/reach__router": "^1.3.11",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-helmet": "^6.1.5",
+    "@types/typography": "^0.16.4",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "concurrently": "^7.5.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "gatsby-cli": "^5.0.0",
+    "gatsby-link": "^5.0.0",
+    "gatsby-plugin-utils": "^4.0.0",
+    "gatsby-script": "^2.0.0",
+    "gh-pages": "^4.0.0",
+    "graphql": "^16.6.0",
+    "graphql-compose": "^9.0.10",
+    "husky": "^8.0.2",
     "lodash.template": "^4.5.0",
     "mkdirp": "^1.0.4",
-    "prettier": "^2.2.1",
-    "release-it": "^14.2.2"
+    "opentracing": "^0.14.7",
+    "prettier": "^2.7.1",
+    "release-it": "^15.5.0",
+    "ts-node": "^10.9.1"
+  },
+  "resolutions": {
+    "graphql-compose": "9.0.9"
   },
   "bugs": {
     "url": "https://github.com/timmywil/timmywil.com/issues"
@@ -87,19 +107,18 @@
     "type": "git",
     "url": "git+ssh://git@github.com/timmywil/timmywil.com.git"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "prettier": {
     "arrowParens": "always",
-    "jsxBracketSameLine": true,
+    "endOfLine": "auto",
     "printWidth": 100,
-    "trailingComma": "none",
     "semi": false,
-    "singleQuote": true
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "concurrently --raw \"npm run lint\" \"npm run typescript\""
-    }
+    "singleQuote": true,
+    "trailingComma": "none"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -111,8 +130,8 @@
     "extends": [
       "plugin:@typescript-eslint/recommended",
       "plugin:react/recommended",
-      "prettier/@typescript-eslint",
-      "prettier/react"
+      "plugin:react/jsx-runtime",
+      "plugin:prettier/recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 2018,
@@ -132,21 +151,41 @@
     },
     "rules": {
       "prettier/prettier": "error",
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-var-requires": 0,
-      "@typescript-eslint/no-use-before-define": 0
+      "no-unused-vars": "off",
+      "react/prop-types": "off",
+      "react/no-unknown-property": [
+        "error",
+        {
+          "ignore": [
+            "css"
+          ]
+        }
+      ],
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ]
     }
   },
   "eslintIgnore": [
     ".cache/",
-    "public/"
+    "public/",
+    ".yarn",
+    ".pnp.cjs",
+    "*.d.ts"
   ],
   "release-it": {
     "verbose": 2,
     "hooks": {
-      "before:init": "npm run build",
-      "after:git:release": "npm run deploy"
+      "before:init": "yarn build",
+      "after:git:release": "yarn deploy"
     },
     "git": {
       "commitMessage": "chore: release ${version}",
@@ -165,5 +204,6 @@
         "preset": "angular"
       }
     }
-  }
+  },
+  "packageManager": "yarn@4.0.0-rc.29"
 }

@@ -9,7 +9,6 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import { Helmet } from 'react-helmet'
 import { Query } from '../utils/graphql'
-import React from 'react'
 
 type Meta =
   | { name: string; content: any; property?: undefined }

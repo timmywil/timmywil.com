@@ -2,7 +2,6 @@ import { Global, css } from '@emotion/react'
 import { Link, PageRendererProps, graphql } from 'gatsby'
 
 import { Query } from '../utils/graphql'
-import React from 'react'
 import SEO from '../components/SEO'
 import globalStyles from '../utils/globalStyles'
 import { rhythm } from '../utils/typography'

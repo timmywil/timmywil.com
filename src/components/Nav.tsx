@@ -1,5 +1,4 @@
 import { Link } from 'gatsby'
-import React from 'react'
 import { css } from '@emotion/react'
 import { rhythm } from '../utils/typography'
 
@@ -18,7 +17,8 @@ export default function Nav() {
         css={styles.navLink}
         activeStyle={styles.navLinkActive}
         to="/"
-        title="Write more, build more">
+        title="Write more, build more"
+      >
         Write more, build more
       </Link>
       <div css={styles.rightSide}>
@@ -28,7 +28,8 @@ export default function Nav() {
           activeClassName="nav-link-active"
           activeStyle={styles.navLinkActive}
           to="/blog"
-          title="Blog">
+          title="Blog"
+        >
           Blog
         </Link>
       </div>

@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react'
-
 import Footer from './Footer'
 import { Global } from '@emotion/react'
 import Nav from './Nav'
+import { ReactNode } from 'react'
 import globalStyles from '../utils/globalStyles'
 import { rhythm } from '../utils/typography'
 import styled from '@emotion/styled'
