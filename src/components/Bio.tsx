@@ -29,8 +29,8 @@ export default function Bio() {
         imgStyle={styles.image}
         placeholder="none"
       />
-      <div className="flex-row flex-center">
-        Timmy Willison
+      <div css={styles.socialLinks} className="flex-row flex-center">
+        <span className="bio-name">Timmy Willison</span>
         <a
           className="flex-center"
           css={styles.socialLink}
@@ -62,18 +62,36 @@ const styles = {
   container: css`
     width: 100%;
     margin-top: ${rhythm(1)};
-    gap: ${rhythm(1 / 2)};
+    margin-bottom: ${rhythm(0.5)};
+    gap: ${rhythm(0.5)};
 
     ${breakpoints.MIN_DEFAULT_MEDIA_QUERY} {
       flex-direction: row;
     }
   `,
+  socialLinks: css`
+    gap: ${rhythm(0.5)};
+  `,
   socialLink: css`
     text-shadow: none;
-    color: white;
-    background-image: none;
     width: 44px;
     height: 44px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &,
+    &:hover,
+    &:visited {
+      color: white;
+      background-image: none;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    &:active {
+      box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+    }
   `,
   image: {
     borderRadius: '100%'

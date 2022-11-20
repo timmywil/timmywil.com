@@ -6,7 +6,7 @@ export default css`
     --main-color: #333333;
     --main-border-color: #e8e8e8;
     --primary-color: #14b5eb;
-    --secondary-color: #5bcbf1;
+    --secondary-color: #0a5b75;
 
     --link-color: var(--primary-color);
     --link-color-hover: #1091bc;
@@ -30,7 +30,6 @@ export default css`
     --code-background: #eee;
 
     @media (prefers-color-scheme: dark) {
-      --secondary-color: #0a5b75;
       --main-background: #131313;
       --main-color: white;
       --main-border-color: #222222;

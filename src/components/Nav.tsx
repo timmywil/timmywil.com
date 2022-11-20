@@ -48,7 +48,7 @@ const styles = {
     &,
     &:hover,
     &:visited {
-      color: black;
+      color: white;
       text-decoration: none;
       background-image: none;
       text-shadow: none;
@@ -62,25 +62,13 @@ const styles = {
       width: 0;
       height: 0;
       transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-      background-color: var(--link-color-active);
+      background-color: white;
     }
     &.nav-link-active:after,
     &:hover:after {
       left: 0;
       height: 4px;
       width: 100%;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      &,
-      &:hover,
-      &:visited {
-        color: white;
-      }
-
-      &:after {
-        background-color: white;
-      }
     }
   `
 }

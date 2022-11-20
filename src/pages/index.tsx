@@ -89,6 +89,10 @@ const styles = {
     ${breakpoints.MIN_DEFAULT_MEDIA_QUERY} {
       padding-bottom: ${rhythm(3)};
     }
+
+    .bio-name {
+      color: white;
+    }
   `,
   homepageHeader: css`
     color: white;
