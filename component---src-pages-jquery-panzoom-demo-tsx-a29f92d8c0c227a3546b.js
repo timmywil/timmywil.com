@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktimmywil_com=self.webpackChunktimmywil_com||[]).push([[398],{4454:function(t,i,n){n.r(i),n.d(i,{default:function(){return c}});var e=n(1148),o=n(559);function c(){return(0,e.useEffect)((()=>{window.location.href="https://timmywil.com/panzoom/demo"}),[]),(0,o.tZ)("div",{})}}}]);
+//# sourceMappingURL=component---src-pages-jquery-panzoom-demo-tsx-a29f92d8c0c227a3546b.js.map
