@@ -6,7 +6,7 @@
   "author": "Timmy Willison <4timmywil@gmail.com>",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public -b gh-pages",
+    "deploy": "gatsby build && gh-pages -d public",
     "format": "eslint . --fix && prettier --write \"**/*.tsx\" \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.md\"",
     "lint": "eslint . && prettier --check \"**/*.md\" \"**/*.json\"",
     "post": "node tasks/post.js",
