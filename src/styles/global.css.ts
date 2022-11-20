@@ -5,14 +5,13 @@ export default css`
     --main-background: white;
     --main-color: #333333;
     --main-border-color: #e8e8e8;
-    --primary-color: #117e6a;
-    --secondary-color: #19bd9e;
-    --header-background: var(--secondary-color);
+    --primary-color: #14b5eb;
+    --secondary-color: #5bcbf1;
 
-    --link-color: #1fe0bd;
-    --link-color-hover: #18b497;
-    --link-color-active: #159d84;
-    --link-color-visited: #1ccaaa;
+    --link-color: var(--primary-color);
+    --link-color-hover: #1091bc;
+    --link-color-active: #08485e;
+    --link-color-visited: #12a3d3;
     --link-background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0),
@@ -31,12 +30,11 @@ export default css`
     --code-background: #eee;
 
     @media (prefers-color-scheme: dark) {
-      --secondary-color: #062d26;
-      --main-background: #010404;
+      --secondary-color: #0a5b75;
+      --main-background: #131313;
       --main-color: white;
-      --main-border-color: #051414;
+      --main-border-color: #222222;
       --code-background: #232323;
-      --header-background: var(--primary-color);
     }
 
     height: 100%;

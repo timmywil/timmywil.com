@@ -31,7 +31,7 @@ const styles = {
     padding-left: ${rhythm(1 / 2)};
     padding-right: ${rhythm(1 / 2)};
     border-bottom: 1px solid var(--main-border-color);
-    background-color: var(--header-background);
+    background-image: linear-gradient(50deg, var(--secondary-color), var(--primary-color));
   `,
   navLink: css`
     position: relative;
@@ -48,7 +48,7 @@ const styles = {
     &,
     &:hover,
     &:visited {
-      color: white;
+      color: black;
       text-decoration: none;
       background-image: none;
       text-shadow: none;
@@ -62,13 +62,25 @@ const styles = {
       width: 0;
       height: 0;
       transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-      background-color: white;
+      background-color: var(--link-color-active);
     }
     &.nav-link-active:after,
     &:hover:after {
       left: 0;
       height: 4px;
       width: 100%;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      &,
+      &:hover,
+      &:visited {
+        color: white;
+      }
+
+      &:after {
+        background-color: white;
+      }
     }
   `
 }
