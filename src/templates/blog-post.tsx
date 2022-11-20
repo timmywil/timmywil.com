@@ -1,6 +1,6 @@
 import { Link, PageRendererProps, graphql } from 'gatsby'
 import { MarkdownRemark, Query } from '../utils/graphql'
-import { rhythm, scale } from '../utils/typography'
+import { rhythm, scale } from '../styles/typography'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
@@ -15,6 +15,16 @@ type Props = PageRendererProps & {
   }
 }
 
+export const Head = ({ data }: Props) => {
+  const post = data.markdownRemark
+  return (
+    <SEO
+      title={post.frontmatter.title}
+      description={post.frontmatter.description || post.excerpt}
+    />
+  )
+}
+
 export default function BlogPostTemplate({ data, pageContext }: Props) {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
@@ -22,10 +32,6 @@ export default function BlogPostTemplate({ data, pageContext }: Props) {
 
   return (
     <Layout title={siteTitle}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
       <h1>{post.frontmatter.title}</h1>
       <p
         style={{

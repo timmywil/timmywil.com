@@ -1,44 +1,54 @@
 import { Global, css } from '@emotion/react'
 import { Link, PageRendererProps, graphql } from 'gatsby'
 
+import Bio from '../components/Bio'
 import { Query } from '../utils/graphql'
 import SEO from '../components/SEO'
-import globalStyles from '../utils/globalStyles'
-import { rhythm } from '../utils/typography'
+import { TopShape } from '../components/TopShape'
+import { breakpoints } from '../styles/theme'
+import globalStyles from '../styles/global.css'
+import { rhythm } from '../styles/typography'
 
 type Props = PageRendererProps & {
   data: Query
 }
 
-export default function Index({ data }: Props) {
+export const Head = ({ data }: Props) => {
   const siteTitle = data.site.siteMetadata.title
-
   return (
-    <div css={styles.container}>
+    <SEO
+      title={siteTitle}
+      keywords={['blog', 'timmywil', 'Timmy Willison', 'javascript', 'react']}
+    />
+  )
+}
+
+export default function Index() {
+  return (
+    <div className="flex-column flex-start-center" css={styles.container}>
       <Global styles={globalStyles} />
-      <SEO
-        title={siteTitle}
-        keywords={['blog', 'timmywil', 'Timmy Willison', 'javascript', 'react']}
-      />
-      <div css={styles.content}>
+
+      <TopShape />
+
+      <div className="flex-column flex-center-start" css={styles.content}>
         <h1 css={styles.homepageHeader}>Hi!</h1>
         <h1 css={styles.homepageHeader}>I&rsquo;m Timmy Willison</h1>
-        <h1 css={styles.homepageHeader}>
+        <h2 css={styles.homepageHeader}>
           Team Lead for{' '}
           <a css={styles.homepageLink} href="https://jquery.com">
             jQuery Core
           </a>
           ,
-        </h1>
-        <h1 css={styles.homepageHeader}>
+        </h2>
+        <h2 css={styles.homepageHeader}>
           Lead Front-End Engineer at{' '}
           <a css={styles.homepageLink} href="https://spokestack.io">
             Spokestack
           </a>
           .
-        </h1>
-        <h2 css={styles.homepageHeader}>I love building things and making them work better.</h2>
-        <h2 css={styles.homepageHeader}>
+        </h2>
+        <h3 css={styles.homepageHeader}>I love building things and making them work better.</h3>
+        <h3 css={styles.homepageHeader}>
           I believe in{' '}
           <a css={styles.homepageLink} href="https://github.com/timmywil">
             open source
@@ -48,7 +58,7 @@ export default function Index({ data }: Props) {
             free internet
           </a>
           .
-        </h2>
+        </h3>
         <h2 css={styles.homepageHeader}>
           Check out my{' '}
           <Link css={styles.homepageLink} to="/blog" title="Blog">
@@ -56,6 +66,7 @@ export default function Index({ data }: Props) {
           </Link>
           .
         </h2>
+        <Bio />
       </div>
     </div>
   )
@@ -68,23 +79,22 @@ const styles = {
     left: 0;
     right: 0;
     bottom: 0;
-    min-height: 800px;
+    min-height: min-content;
     background-image: linear-gradient(50deg, var(--secondary-color), var(--primary-color));
-    padding: ${rhythm(1)};
-    padding-bottom: ${rhythm(4)};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   `,
   content: css`
-    text-align: left;
+    min-height: 100vh;
+    padding: ${rhythm(3)} ${rhythm(1)} ${rhythm(1)};
+
+    ${breakpoints.MIN_DEFAULT_MEDIA_QUERY} {
+      padding-bottom: ${rhythm(3)};
+    }
   `,
   homepageHeader: css`
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    margin-top: ${rhythm(1 / 2)};
-    margin-bottom: ${rhythm(1 / 2)};
+    margin-top: 0;
+    margin-bottom: ${rhythm(0.75)};
   `,
   homepageLink: css`
     color: white;

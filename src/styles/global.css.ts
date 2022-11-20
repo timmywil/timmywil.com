@@ -5,13 +5,14 @@ export default css`
     --main-background: white;
     --main-color: #333333;
     --main-border-color: #e8e8e8;
-    --primary-color: #14b5eb;
+    --primary-color: #117e6a;
     --secondary-color: #19bd9e;
+    --header-background: var(--secondary-color);
 
-    --link-color: var(--primary-color);
-    --link-color-hover: #1091bc;
-    --link-color-active: #08485e;
-    --link-color-visited: #108ab2;
+    --link-color: #1fe0bd;
+    --link-color-hover: #18b497;
+    --link-color-active: #159d84;
+    --link-color-visited: #1ccaaa;
     --link-background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0),
@@ -30,11 +31,12 @@ export default css`
     --code-background: #eee;
 
     @media (prefers-color-scheme: dark) {
-      --main-background: #131313;
-      --main-color: white;
-      --main-border-color: #222222;
       --secondary-color: #062d26;
+      --main-background: #010404;
+      --main-color: white;
+      --main-border-color: #051414;
       --code-background: #232323;
+      --header-background: var(--primary-color);
     }
 
     height: 100%;
@@ -72,5 +74,90 @@ export default css`
   }
   .gatsby-resp-image-link {
     background-image: none;
+  }
+
+  .flex-row,
+  .flex-column,
+  .flex-center {
+    display: flex;
+  }
+
+  .flex-row {
+    flex-direction: row;
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .flex-center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-start-center {
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .flex-center-start {
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .flex-end-center {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .flex-center-end {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .flex-start-end {
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .flex-end-start {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .flex-between-center {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flex-between-start {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .flex-between-end {
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .flex-stretch-center {
+    justify-content: stretch;
+    align-items: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .absolute-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 `

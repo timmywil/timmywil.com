@@ -1,91 +1,92 @@
-import Image, { FixedObject } from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import { Query } from '../utils/graphql'
+import { StaticImage } from 'gatsby-plugin-image'
+import { breakpoints } from '../styles/theme'
 import { css } from '@emotion/react'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../styles/typography'
 import styled from '@emotion/styled'
-
-type QueryType = Query & { avatar: { childImageSharp: { fixed: FixedObject } } }
 
 const SVGIcon = styled.svg`
   width: 16px;
   height: 16px;
-  display: inline-block;
-  fill: #2a7ae2;
+  display: block;
   line-height: 0;
-  padding-top: 1px;
-  margin-right: 3px;
+  transform: scale(1.5);
 `
 
 export default function Bio() {
-  const { site, avatar } = useStaticQuery<QueryType>(bioQuery)
+  const { site } = useStaticQuery<Query>(bioQuery)
   const { author, social } = site.siteMetadata
   return (
-    <div css={styles.container}>
-      <Image
-        fixed={avatar.childImageSharp.fixed}
+    <div className="flex-column flex-start-center" css={styles.container}>
+      <StaticImage
+        src="../../content/assets/me-headshot.jpg"
         alt={author}
-        css={styles.imageWrap}
+        layout="fixed"
+        width={100}
+        height={100}
         imgStyle={styles.image}
+        placeholder="none"
       />
-      <p css={styles.writtenText}>
-        Come at me:
-        <a css={styles.twitterLink} href={`https://twitter.com/${social.twitter}`}>
+      <div className="flex-row flex-center">
+        Timmy Willison
+        <a
+          className="flex-center"
+          css={styles.socialLink}
+          href={`https://mastodon.world/${social.mastodon}`}
+        >
+          <SVGIcon
+            dangerouslySetInnerHTML={{
+              __html: '<use xlink:href="/minima-social-icons.svg#mastodon"></use>'
+            }}
+          />
+        </a>
+        <a
+          className="flex-center"
+          css={styles.socialLink}
+          href={`https://twitter.com/${social.twitter}`}
+        >
           <SVGIcon
             dangerouslySetInnerHTML={{
               __html: '<use xlink:href="/minima-social-icons.svg#twitter"></use>'
             }}
           />
-          {author}
         </a>
-        .
-      </p>
+      </div>
     </div>
   )
 }
 
 const styles = {
   container: css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
     margin-top: ${rhythm(1)};
-    margin-bottom: ${rhythm(1)};
+    gap: ${rhythm(1 / 2)};
+
+    ${breakpoints.MIN_DEFAULT_MEDIA_QUERY} {
+      flex-direction: row;
+    }
   `,
-  writtenText: css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0;
-  `,
-  imageWrap: css`
-    margin-right: ${rhythm(1 / 2)};
-    margin-bottom: 0;
-    min-width: 50;
-    border-radius: 100%;
-  `,
-  twitterLink: css`
-    margin-left: 5px;
+  socialLink: css`
+    text-shadow: none;
+    color: white;
+    background-image: none;
+    width: 44px;
+    height: 44px;
   `,
   image: {
-    borderRadius: '50%'
+    borderRadius: '100%'
   }
 }
 
 const bioQuery = graphql`
   query BioQuery {
-    avatar: file(absolutePath: { regex: "/me-headshot.jpg/" }) {
-      childImageSharp {
-        fixed(width: 50, height: 50) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     site {
       siteMetadata {
         author
         social {
+          mastodon
           twitter
         }
       }

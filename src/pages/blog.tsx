@@ -3,11 +3,15 @@ import { Link, PageRendererProps, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import { Query } from '../utils/graphql'
 import SEO from '../components/SEO'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../styles/typography'
 
 type Props = PageRendererProps & {
   data: Query
 }
+
+export const Head = () => (
+  <SEO title="Blog" keywords={['blog', 'timmywil', 'Timmy Willison', 'javascript', 'react']} />
+)
 
 export default function Blog({ data }: Props) {
   const siteTitle = data.site.siteMetadata.title
@@ -15,7 +19,6 @@ export default function Blog({ data }: Props) {
 
   return (
     <Layout title={siteTitle}>
-      <SEO title="Blog" keywords={['blog', 'timmywil', 'Timmy Willison', 'javascript', 'react']} />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (

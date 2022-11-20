@@ -2,8 +2,9 @@ import Footer from './Footer'
 import { Global } from '@emotion/react'
 import Nav from './Nav'
 import { ReactNode } from 'react'
-import globalStyles from '../utils/globalStyles'
-import { rhythm } from '../utils/typography'
+import { breakpoints } from '../styles/theme'
+import globalStyles from '../styles/global.css'
+import { rhythm } from '../styles/typography'
 import styled from '@emotion/styled'
 
 const Wrapper = styled.div`
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
   max-width: ${rhythm(24)};
   padding: ${rhythm(2)} ${rhythm(1)};
 
-  @media (max-width: 450px) {
+  ${breakpoints.DEFAULT_MEDIA_QUERY} {
     padding-bottom: ${rhythm(6)};
   }
 `
@@ -29,8 +30,8 @@ export default function Layout({ children }: Props) {
       <Wrapper>
         <Nav />
         <main>{children}</main>
+        <Footer />
       </Wrapper>
-      <Footer />
     </>
   )
 }

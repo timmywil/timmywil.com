@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 const SocialList = styled.ul`
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   list-style: none;
   margin: 0;
 `
@@ -43,7 +43,7 @@ const SVGIcon = styled.svg`
   width: 16px;
   height: 16px;
   display: inline-block;
-  fill: #828282;
+  fill: #000000;
   line-height: 0;
 
   @media (prefers-color-scheme: dark) {
@@ -54,6 +54,7 @@ const SVGIcon = styled.svg`
 interface Props {
   social: {
     github: string
+    mastodon: string
     twitter: string
     linkedin: string
     rss: string
@@ -68,6 +69,15 @@ export default function SocialLinks({ social }: Props) {
           <SVGIcon
             dangerouslySetInnerHTML={{
               __html: '<use xlink:href="/minima-social-icons.svg#github"></use>'
+            }}
+          />
+        </SocialLink>
+      </SocialLi>
+      <SocialLi>
+        <SocialLink href={`https://mastodon.world/${social.mastodon}`} title="Mastodon">
+          <SVGIcon
+            dangerouslySetInnerHTML={{
+              __html: '<use xlink:href="/minima-social-icons.svg#mastodon"></use>'
             }}
           />
         </SocialLink>

@@ -707,6 +707,28 @@ export type GatsbyImageDataQueryOperatorInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['GatsbyImageData']>>>;
 };
 
+export enum GatsbyImageFormat {
+  Auto = 'AUTO',
+  Avif = 'AVIF',
+  Jpg = 'JPG',
+  NoChange = 'NO_CHANGE',
+  Png = 'PNG',
+  Webp = 'WEBP'
+}
+
+export enum GatsbyImageLayout {
+  Constrained = 'CONSTRAINED',
+  Fixed = 'FIXED',
+  FullWidth = 'FULL_WIDTH'
+}
+
+export enum GatsbyImagePlaceholder {
+  Blurred = 'BLURRED',
+  DominantColor = 'DOMINANT_COLOR',
+  None = 'NONE',
+  TracedSvg = 'TRACED_SVG'
+}
+
 export enum ImageCropFocus {
   Attention = 'ATTENTION',
   Center = 'CENTER',
@@ -1841,17 +1863,13 @@ export type QueryMarkdownRemarkArgs = {
 export type QuerySiteArgs = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   children?: InputMaybe<NodeFilterListInput>;
-  graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   internal?: InputMaybe<InternalFilterInput>;
   jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
-  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
-  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -1914,17 +1932,13 @@ export type Site = Node & {
   __typename?: 'Site';
   buildTime?: Maybe<Scalars['Date']>;
   children: Array<Node>;
-  graphqlTypegen?: Maybe<Scalars['Boolean']>;
   host?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   internal: Internal;
   jsxRuntime?: Maybe<Scalars['String']>;
   parent?: Maybe<Node>;
-  pathPrefix?: Maybe<Scalars['String']>;
-  polyfill?: Maybe<Scalars['Boolean']>;
   port?: Maybe<Scalars['Int']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  trailingSlash?: Maybe<Scalars['String']>;
 };
 
 
@@ -2115,33 +2129,25 @@ export type SiteEdge = {
 export type SiteFieldSelector = {
   buildTime?: InputMaybe<FieldSelectorEnum>;
   children?: InputMaybe<NodeFieldSelector>;
-  graphqlTypegen?: InputMaybe<FieldSelectorEnum>;
   host?: InputMaybe<FieldSelectorEnum>;
   id?: InputMaybe<FieldSelectorEnum>;
   internal?: InputMaybe<InternalFieldSelector>;
   jsxRuntime?: InputMaybe<FieldSelectorEnum>;
   parent?: InputMaybe<NodeFieldSelector>;
-  pathPrefix?: InputMaybe<FieldSelectorEnum>;
-  polyfill?: InputMaybe<FieldSelectorEnum>;
   port?: InputMaybe<FieldSelectorEnum>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFieldSelector>;
-  trailingSlash?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type SiteFilterInput = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   children?: InputMaybe<NodeFilterListInput>;
-  graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   internal?: InputMaybe<InternalFilterInput>;
   jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
-  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
-  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteFunction = Node & {
@@ -2661,24 +2667,28 @@ export type SiteSiteMetadataSocial = {
   __typename?: 'SiteSiteMetadataSocial';
   github?: Maybe<Scalars['String']>;
   linkedin?: Maybe<Scalars['String']>;
+  mastodon?: Maybe<Scalars['String']>;
   twitter?: Maybe<Scalars['String']>;
 };
 
 export type SiteSiteMetadataSocialFieldSelector = {
   github?: InputMaybe<FieldSelectorEnum>;
   linkedin?: InputMaybe<FieldSelectorEnum>;
+  mastodon?: InputMaybe<FieldSelectorEnum>;
   twitter?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type SiteSiteMetadataSocialFilterInput = {
   github?: InputMaybe<StringQueryOperatorInput>;
   linkedin?: InputMaybe<StringQueryOperatorInput>;
+  mastodon?: InputMaybe<StringQueryOperatorInput>;
   twitter?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteSiteMetadataSocialSortInput = {
   github?: InputMaybe<SortOrderEnum>;
   linkedin?: InputMaybe<SortOrderEnum>;
+  mastodon?: InputMaybe<SortOrderEnum>;
   twitter?: InputMaybe<SortOrderEnum>;
 };
 
@@ -2693,17 +2703,13 @@ export type SiteSiteMetadataSortInput = {
 export type SiteSortInput = {
   buildTime?: InputMaybe<SortOrderEnum>;
   children?: InputMaybe<NodeSortInput>;
-  graphqlTypegen?: InputMaybe<SortOrderEnum>;
   host?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
   internal?: InputMaybe<InternalSortInput>;
   jsxRuntime?: InputMaybe<SortOrderEnum>;
   parent?: InputMaybe<NodeSortInput>;
-  pathPrefix?: InputMaybe<SortOrderEnum>;
-  polyfill?: InputMaybe<SortOrderEnum>;
   port?: InputMaybe<SortOrderEnum>;
   siteMetadata?: InputMaybe<SiteSiteMetadataSortInput>;
-  trailingSlash?: InputMaybe<SortOrderEnum>;
 };
 
 export enum SortOrderEnum {

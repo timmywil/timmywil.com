@@ -1,13 +1,16 @@
 module.exports = {
+  jsxRuntime: 'automatic',
+  jsxImportSource: '@emotion/react',
   siteMetadata: {
-    title: 'Write more, build more',
+    title: 'Timmy Willison',
     author: 'Timmy Willison',
     description: 'Personal blog and website for Timmy Willison',
     siteUrl: 'https://timmywil.com/',
     social: {
-      twitter: 'timmywil',
       github: 'timmywil',
-      linkedin: 'timmywil'
+      linkedin: 'timmywil',
+      mastodon: '@timmywil',
+      twitter: '@timmywil'
     }
   },
   plugins: [
@@ -25,8 +28,8 @@ module.exports = {
         name: 'assets'
       }
     },
-    'gatsby-plugin-typescript',
     'gatsby-plugin-emotion',
+    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -35,8 +38,9 @@ module.exports = {
         respectDNT: true
       }
     },
-    'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -133,11 +137,10 @@ module.exports = {
       }
     },
     'gatsby-plugin-offline',
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: 'src/utils/typography'
+        pathToConfigModule: 'src/styles/typography'
       }
     }
   ]

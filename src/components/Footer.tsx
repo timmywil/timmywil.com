@@ -1,7 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 import SocialLinks from './SocialLinks'
-import { rhythm } from '../utils/typography'
+import { breakpoints } from '../styles/theme'
+import { rhythm } from '../styles/typography'
 import styled from '@emotion/styled'
 
 const footerQuery = graphql`
@@ -11,6 +12,7 @@ const footerQuery = graphql`
         author
         social {
           twitter
+          mastodon
           github
           linkedin
         }
@@ -35,32 +37,17 @@ const Container = styled.footer`
   background-color: var(--main-background);
   color: var(--main-color);
 
-  @media (max-width: 450px) {
+  ${breakpoints.DEFAULT_MEDIA_QUERY} {
     flex-direction: column;
-    padding-top: ${rhythm(1)};
-    padding-bottom: ${rhythm(1)};
-    height: ${rhythm(5)};
-  }
-  @media (prefers-color-scheme: dark and (max-width: 450px)) {
-    height: ${rhythm(6)};
+    justify-content: center;
+    gap: 8px;
+    height: ${rhythm(4)};
   }
 `
 
 const Copyright = styled.div`
+  font-size: 0.8rem;
   text-align: right;
-`
-
-const DarkModeNotice = styled.div`
-  display: none;
-  font-size: 14px;
-  line-height: 1.2;
-
-  @media (max-width: 450px) {
-    margin: 10px 0 5px;
-  }
-  @media (prefers-color-scheme: dark) {
-    display: block;
-  }
 `
 
 export default function Footer() {
@@ -69,7 +56,6 @@ export default function Footer() {
   return (
     <Container>
       <SocialLinks social={social} />
-      <DarkModeNotice>Detected OS dark mode</DarkModeNotice>
       <Copyright>
         &copy; {new Date().getFullYear()} {author}
       </Copyright>

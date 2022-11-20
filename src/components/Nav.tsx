@@ -1,44 +1,28 @@
 import { Link } from 'gatsby'
 import { css } from '@emotion/react'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../styles/typography'
 
 export default function Nav() {
   return (
-    <div css={styles.wrapper}>
-      <style>{`
-        .nav-link-active:after {
-          left: 50% !important;
-          height: 0 !important;
-          width: 0 !important;
-        }
-      `}</style>
+    <div className="flex-row flex-start-center" css={styles.nav}>
+      <Link className="nav-link" css={styles.navLink} activeClassName="nav-link-active" to="/">
+        Home
+      </Link>
       <Link
+        partiallyActive
         className="nav-link"
         css={styles.navLink}
-        activeStyle={styles.navLinkActive}
-        to="/"
-        title="Write more, build more"
+        activeClassName="nav-link-active"
+        to="/blog"
       >
-        Write more, build more
+        Blog
       </Link>
-      <div css={styles.rightSide}>
-        <Link
-          className="nav-link"
-          css={styles.navLink}
-          activeClassName="nav-link-active"
-          activeStyle={styles.navLinkActive}
-          to="/blog"
-          title="Blog"
-        >
-          Blog
-        </Link>
-      </div>
     </div>
   )
 }
 
 const styles = {
-  wrapper: css`
+  nav: css`
     position: absolute;
     top: 0;
     left: 0;
@@ -46,19 +30,8 @@ const styles = {
     height: ${rhythm(2)};
     padding-left: ${rhythm(1 / 2)};
     padding-right: ${rhythm(1 / 2)};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid var(--main-border-color);
-    background-color: var(--main-background);
-  `,
-  rightSide: css`
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    background-color: var(--header-background);
   `,
   navLink: css`
     position: relative;
@@ -72,11 +45,13 @@ const styles = {
     background-image: none;
     transition: all 0.2s cubic-bezier(0.28, 0.32, 0.29, 0.79);
 
+    &,
     &:hover,
     &:visited {
-      color: var(--link-color);
+      color: white;
       text-decoration: none;
       background-image: none;
+      text-shadow: none;
     }
     &:after {
       content: '';
@@ -87,22 +62,13 @@ const styles = {
       width: 0;
       height: 0;
       transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-      background-color: var(--link-color-hover);
+      background-color: white;
     }
+    &.nav-link-active:after,
     &:hover:after {
       left: 0;
       height: 4px;
       width: 100%;
     }
-    &:active {
-      text-shadow: 0 0 1px rgba(39, 110, 202, 0.6);
-    }
-  `,
-  navLinkActive: {
-    color: 'var(--main-color)',
-    backgroundColor: 'var(--main-background)',
-    boxShadow: 'none',
-    textShadow: 'none',
-    cursor: 'default'
-  }
+  `
 }
