@@ -34,22 +34,23 @@ export default function Bio() {
         <a
           className="flex-center"
           css={styles.socialLink}
+          href={`https://github.com/${social.github}`}
+        >
+          <SVGIcon
+            dangerouslySetInnerHTML={{
+              __html: '<use xlink:href="/minima-social-icons.svg#github"></use>'
+            }}
+          />
+        </a>
+        <a
+          rel="me"
+          className="flex-center"
+          css={styles.socialLink}
           href={`https://mastodon.world/${social.mastodon}`}
         >
           <SVGIcon
             dangerouslySetInnerHTML={{
               __html: '<use xlink:href="/minima-social-icons.svg#mastodon"></use>'
-            }}
-          />
-        </a>
-        <a
-          className="flex-center"
-          css={styles.socialLink}
-          href={`https://twitter.com/${social.twitter}`}
-        >
-          <SVGIcon
-            dangerouslySetInnerHTML={{
-              __html: '<use xlink:href="/minima-social-icons.svg#twitter"></use>'
             }}
           />
         </a>
@@ -77,17 +78,16 @@ const styles = {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
 
     &,
     &:hover,
     &:visited {
-      color: white;
       background-image: none;
     }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.3);
     }
     &:active {
       box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
