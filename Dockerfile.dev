@@ -1,0 +1,21 @@
+FROM node:lts
+
+WORKDIR /usr/src/app
+
+# Files needed to yarn install
+COPY .yarn/cache .yarn/cache
+COPY .yarn/plugins .yarn/plugins
+COPY .yarn/releases .yarn/releases
+COPY .yarn/sdks .yarn/sdks
+COPY .pnp.cjs .pnp.cjs
+COPY .pnp.loader.mjs .pnp.loader.mjs
+COPY .yarnrc.yml .yarnrc.yml
+COPY yarn.lock yarn.lock
+COPY package.json package.json
+
+RUN yarn install
+
+EXPOSE 8000
+EXPOSE 5858
+
+CMD yarn start

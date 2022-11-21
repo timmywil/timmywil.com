@@ -14,7 +14,7 @@
     "release": "release-it",
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
-    "start": "gatsby develop",
+    "start": "gatsby develop -H 0.0.0.0",
     "test": "yarn lint",
     "typescript": "tsc -p tsconfig.json --noEmit"
   },
