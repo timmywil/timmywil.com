@@ -46,7 +46,7 @@ export default function Bio() {
           rel="me"
           className="flex-center"
           css={styles.socialLink}
-          href={`https://mastodon.world/${social.mastodon}`}
+          href={`https://hachyderm.io/${social.mastodon}`}
         >
           <SVGIcon
             dangerouslySetInnerHTML={{

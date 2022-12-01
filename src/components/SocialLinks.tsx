@@ -74,7 +74,7 @@ export default function SocialLinks({ social }: Props) {
         </SocialLink>
       </SocialLi>
       <SocialLi>
-        <SocialLink href={`https://mastodon.world/${social.mastodon}`} title="Mastodon">
+        <SocialLink href={`https://hachyderm.io/${social.mastodon}`} title="Mastodon">
           <SVGIcon
             dangerouslySetInnerHTML={{
               __html: '<use xlink:href="/minima-social-icons.svg#mastodon"></use>'
