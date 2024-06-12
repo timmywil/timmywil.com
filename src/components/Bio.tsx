@@ -1,11 +1,10 @@
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 import { graphql, useStaticQuery } from 'gatsby'
-
-import { Query } from '../utils/graphql'
 import { StaticImage } from 'gatsby-plugin-image'
 import { breakpoints } from '../styles/theme'
-import { css } from '@emotion/react'
 import { rhythm } from '../styles/typography'
-import styled from '@emotion/styled'
+import { Query } from '../utils/graphql'
 
 const SVGIcon = styled.svg`
   width: 16px;
@@ -104,8 +103,8 @@ const bioQuery = graphql`
       siteMetadata {
         author
         social {
+          github
           mastodon
-          twitter
         }
       }
     }
