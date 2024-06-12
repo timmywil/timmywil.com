@@ -84,6 +84,7 @@ module.exports = {
         `,
         feeds: [
           {
+            site_url: 'https://timmywil.com/blog/',
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
