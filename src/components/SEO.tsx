@@ -16,19 +16,17 @@ interface Props {
 }
 
 export default function SEO({ title, description = '', keywords = [] }: Props) {
-  const { site } = useStaticQuery<Query>(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+  const { site } = useStaticQuery<Query>(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  )
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
 

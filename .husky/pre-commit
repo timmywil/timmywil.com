@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # Run locally if the image does not exist
-yarn test
+npm test

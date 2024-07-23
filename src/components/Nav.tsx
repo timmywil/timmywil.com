@@ -1,5 +1,5 @@
-import { Link } from 'gatsby'
 import { css } from '@emotion/react'
+import { Link } from 'gatsby'
 import { rhythm } from '../styles/typography'
 
 export default function Nav() {
@@ -61,7 +61,10 @@ const styles = {
       right: 0;
       width: 0;
       height: 0;
-      transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+      transition:
+        width 0.1s ease-in-out,
+        height 0.1s ease-in-out,
+        left 0.1s ease-in-out;
       background-color: white;
     }
     &.nav-link-active:after,
