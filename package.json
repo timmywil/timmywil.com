@@ -11,7 +11,7 @@
     "format": "eslint . --fix && prettier --write \"**/*.tsx\" \"**/*.ts\" \"**/*.js\" \"**/*.json\" \"**/*.md\"",
     "lint": "eslint . && prettier --check \"**/*.md\" \"**/*.json\"",
     "post": "node tasks/post.js",
-    "prepare": "husky install",
+    "prepare": "husky",
     "release": "release-it",
     "schema": "graphql-codegen --config codegen.yml",
     "serve": "gatsby serve",
