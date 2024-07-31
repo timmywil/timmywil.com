@@ -1,13 +1,12 @@
 import { Global, css } from '@emotion/react'
 import { Link, PageRendererProps, graphql } from 'gatsby'
-
 import Bio from '../components/Bio'
-import { Query } from '../utils/graphql'
 import SEO from '../components/SEO'
 import { TopShape } from '../components/TopShape'
-import { breakpoints } from '../styles/theme'
 import globalStyles from '../styles/global.css'
+import { breakpoints } from '../styles/theme'
 import { rhythm } from '../styles/typography'
+import { Query } from '../utils/graphql'
 
 type Props = PageRendererProps & {
   data: Query
@@ -41,9 +40,9 @@ export default function Index() {
           ,
         </h2>
         <h2 css={styles.homepageHeader}>
-          Lead Front-End Engineer at{' '}
-          <a css={styles.homepageLink} href="https://spokestack.io">
-            Spokestack
+          Lead Software Engineer at{' '}
+          <a css={styles.homepageLink} href="https://worbler.ai">
+            Worbler AI
           </a>
           .
         </h2>
